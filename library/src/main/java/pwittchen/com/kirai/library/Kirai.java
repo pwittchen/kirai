@@ -55,7 +55,7 @@ public final class Kirai {
     private final static char BRACE_START = '{';
     private final static char BRACE_END = '}';
     private final static String REGEX_VALID_TAG = "[a-z]{1}[a-z0-9_]*";
-    private final static Pattern TAG_REGEX = Pattern.compile("\\" + BRACE_START + "(.+?)\\" + BRACE_END);
+    private final static Pattern REGEX_TAG = Pattern.compile("\\" + BRACE_START + "(.+?)\\" + BRACE_END);
     private static String input;
     private List<Piece> pieces = new ArrayList<>();
     private List<String> tags;
@@ -151,7 +151,7 @@ public final class Kirai {
 
     private static List<String> getTags(final String string) {
         final List<String> tags = new ArrayList<>();
-        final Matcher matcher = TAG_REGEX.matcher(string);
+        final Matcher matcher = REGEX_TAG.matcher(string);
         while (matcher.find()) {
             tags.add(matcher.group(1));
         }
