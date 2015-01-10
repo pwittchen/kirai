@@ -86,7 +86,7 @@ public class Piece {
         }
 
         if(hex.charAt(0) != '#') {
-            throw new IllegalArgumentException("Hex value should start from hash sign (#)");
+            throw new IllegalArgumentException("Hex value have to start from hash sign (#)");
         }
 
         value = String.format(COLOR_FORMAT, hex, value);

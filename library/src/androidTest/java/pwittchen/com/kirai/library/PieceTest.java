@@ -238,7 +238,7 @@ public class PieceTest extends AndroidTestCase {
     public void testColorShouldThrowExceptionWhenHexDoesNotStartFromHash() throws Exception {
         // given
         String incorrectTestColorHexValue = "F#FFFFF";
-        String expectedExceptionMessage = "Hex value should start from hash sign (#)";
+        String expectedExceptionMessage = "Hex value have to start from hash sign (#)";
 
         try {
             // when
