@@ -1,5 +1,7 @@
-Kirai - flavored Android string formatting [![Build Status](https://travis-ci.org/pwittchen/kirai.svg?branch=master)](https://travis-ci.org/pwittchen/kirai)
+Kirai - flavored Android string formatting
 ==========================================
+
+[![Build Status](https://travis-ci.org/pwittchen/kirai.svg?branch=master)](https://travis-ci.org/pwittchen/kirai)
 
 Kirai means *phrase* in Swahili language.
 
