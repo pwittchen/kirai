@@ -42,18 +42,19 @@ import java.util.regex.Pattern;
  *       .format();
  * </pre>
  * <ul>
- *  <li>Surround keys with curly braces</li>
- *  <li>Keys start with lowercase letters followed by lowercase letters and underscores.</li>
- *  <li>Can be formatted for TextView (bold, italic, underline, big, small, sub, sup).</li>
- *  <li>Can be colored for TextView with HEX value followed by hash sign.</li>
- *  <li>Fails on any mismatched keys.</li>
- *  <li>Fails on not balanced braces in input.</li>
- *  <li>Fails on incorrect, empty or null input data.</li>
+ * <li>Surround keys with curly braces</li>
+ * <li>Keys start with lowercase letters followed by lowercase letters and underscores.</li>
+ * <li>Can be formatted for TextView (bold, italic, underline, big, small, sub, sup).</li>
+ * <li>Can be colored for TextView with HEX value followed by hash sign.</li>
+ * <li>Fails on any mismatched keys.</li>
+ * <li>Fails on not balanced braces in input.</li>
+ * <li>Fails on incorrect, empty or null input data.</li>
  * </ul>
  */
 public final class Kirai {
     private final static char BRACE_START = '{';
     private final static char BRACE_END = '}';
+    private final static String REGEX_VALID_TAG = "[a-z]{1}[a-z0-9_]*";
     private final static Pattern TAG_REGEX = Pattern.compile("\\" + BRACE_START + "(.+?)\\" + BRACE_END);
     private static String input;
     private List<Piece> pieces = new ArrayList<>();
@@ -84,7 +85,7 @@ public final class Kirai {
             throw new IllegalArgumentException("Key and value cannot be null or empty");
         }
 
-        if(!tags.contains(key)) {
+        if (!tags.contains(key)) {
             throw new IllegalArgumentException("Tag {" + key + "} was not defined in input string");
         }
 
@@ -97,7 +98,7 @@ public final class Kirai {
             throw new IllegalArgumentException("Piece object cannot be null");
         }
 
-        if(!tags.contains(piece.getKey())) {
+        if (!tags.contains(piece.getKey())) {
             throw new IllegalArgumentException("Tag {" + piece.getKey() + "} was not defined in input string");
         }
 
@@ -142,7 +143,7 @@ public final class Kirai {
     private boolean areTagsValid() {
         tags = getTags(input);
         for (String tag : tags) {
-            if (tag.matches("[a-z]{1}[a-z0-9_]*")) continue;
+            if (tag.matches(REGEX_VALID_TAG)) continue;
             return false;
         }
         return true;
