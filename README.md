@@ -1,7 +1,7 @@
 Kirai - flavored Android string formatting
 ==========================================
 
-Kirai means "phrase" in Swahili language.
+Kirai means *phrase* in Swahili language.
 
 Project is inspired by [phrase](https://github.com/square/phrase), [TaggerString](https://github.com/polok/TaggerString) and [BabushkaText](https://github.com/quiqueqs/BabushkaText).
 Kirai has fluent API similar to phrase with additional formatting similar to TaggerString and allows to add formatted pieces of text like BabushkaText.
