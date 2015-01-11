@@ -19,7 +19,6 @@ import android.test.AndroidTestCase;
 
 /**
  * This test can be executed with an Android device or emulator.
- * TODO: write tests - TDD
  */
 public class KiraiTest extends AndroidTestCase {
 
