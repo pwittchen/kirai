@@ -40,7 +40,7 @@ textView.setText(formatted);
 Tests
 -----
 
-Unit Tests are available in `androidTest` directories. We need launched and attached Android device or emulator in order to run them.
+Unit Tests are available in `androidTest` directory of the library project. We need launched and attached Android device or emulator in order to run them. Tests were written according to TDD methodology. They determine library specification and check if project is error prone.
 
 License
 -------
