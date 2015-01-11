@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package pwittchen.com.kirai.library;
+package com.github.pwittchen.kirai.library;
 
 import android.text.TextUtils;
 
@@ -35,7 +35,7 @@ public class Piece {
     }
 
     public static Piece put(String key, Object value) {
-        if(TextUtils.isEmpty(key) || TextUtils.isEmpty(String.valueOf(value))) {
+        if (TextUtils.isEmpty(key) || TextUtils.isEmpty(String.valueOf(value))) {
             throw new IllegalArgumentException("Key and value cannot be null or empty");
         }
         return new Piece(key, value);
@@ -77,15 +77,15 @@ public class Piece {
     }
 
     public Piece color(String hex) {
-        if(TextUtils.isEmpty(hex)) {
+        if (TextUtils.isEmpty(hex)) {
             throw new IllegalArgumentException("Hex value of the color cannot be null or empty");
         }
 
-        if(hex.length() != 7) {
+        if (hex.length() != 7) {
             throw new IllegalArgumentException("Hex value have to contain 7 characters including hash sign (#)");
         }
 
-        if(hex.charAt(0) != '#') {
+        if (hex.charAt(0) != '#') {
             throw new IllegalArgumentException("Hex value have to start from hash sign (#)");
         }
 

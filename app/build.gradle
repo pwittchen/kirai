@@ -4,7 +4,7 @@ android {
     compileSdkVersion 21
     buildToolsVersion "21.1.1"
     defaultConfig {
-        applicationId 'pwittchen.com.kirai'
+        applicationId 'com.github.pwittchen.kirai'
         minSdkVersion 14
         targetSdkVersion 21
         versionCode 1

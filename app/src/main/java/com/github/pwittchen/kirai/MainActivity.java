@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package pwittchen.com.kirai;
+package com.github.pwittchen.kirai;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.TextView;
 
-import pwittchen.com.kirai.library.Kirai;
-import pwittchen.com.kirai.library.Piece;
+import com.github.pwittchen.kirai.library.Kirai;
+import com.github.pwittchen.kirai.library.Piece;
 
 public class MainActivity extends ActionBarActivity {
 
