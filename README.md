@@ -40,7 +40,7 @@ textView.setText(formatted);
 Download
 --------
 
-You can also depend on the library through Maven:
+You can depend on the library through Maven:
 
 ```xml
 <dependency>
