@@ -1,7 +1,7 @@
 Kirai - flavored Android string formatting
 ==========================================
 
-[![Build Status](https://travis-ci.org/pwittchen/kirai.svg?branch=master)](https://travis-ci.org/pwittchen/kirai) [![Maven Central](https://img.shields.io/maven-central/v/com.github.pwittchen.kirai/library.svg?style=flat)]()
+[![Build Status](https://travis-ci.org/pwittchen/kirai.svg?branch=master)](https://travis-ci.org/pwittchen/kirai) [![Maven Central](https://img.shields.io/maven-central/v/com.github.pwittchen.kirai/library.svg?style=flat)](http://search.maven.org/#artifactdetails%7Ccom.github.pwittchen.kirai%7Clibrary%7C1.0.0%7Caar)
 
 Kirai means *phrase* in Swahili language.
 
