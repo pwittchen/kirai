@@ -40,7 +40,7 @@ textView.setText(formatted);
 Download
 --------
 
-You can depend on the library through [Maven](http://search.maven.org/#artifactdetails%7Ccom.github.pwittchen.kirai%7Clibrary%7C1.0.0%7Caar):
+You can depend on the library through Maven:
 
 ```xml
 <dependency>
