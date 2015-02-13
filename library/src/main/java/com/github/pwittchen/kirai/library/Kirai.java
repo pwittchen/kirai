@@ -16,7 +16,6 @@
 package com.github.pwittchen.kirai.library;
 
 import android.text.Html;
-import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +62,7 @@ public final class Kirai {
     private Kirai(String string) {
         input = string;
 
-        if (TextUtils.isEmpty(string)) {
+        if (Utils.isEmpty(string)) {
             throw new IllegalArgumentException("Input string cannot be null or empty");
         }
 
@@ -81,7 +80,7 @@ public final class Kirai {
     }
 
     public Kirai put(String key, Object value) {
-        if (TextUtils.isEmpty(key) || TextUtils.isEmpty(String.valueOf(value))) {
+        if (Utils.isEmpty(key) || Utils.isEmpty(String.valueOf(value))) {
             throw new IllegalArgumentException("Key and value cannot be null or empty");
         }
 

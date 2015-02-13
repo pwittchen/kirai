@@ -15,9 +15,7 @@
  */
 package com.github.pwittchen.kirai.library;
 
-import android.text.TextUtils;
-
-public class Piece {
+public final class Piece {
     public final static String STRONG_FORMAT = "<strong>%s</strong>";
     public final static String ITALIC_FORMAT = "<em>%s</em>";
     public final static String UNDERLINE_FORMAT = "<u>%s</u>";
@@ -35,7 +33,7 @@ public class Piece {
     }
 
     public static Piece put(String key, Object value) {
-        if (TextUtils.isEmpty(key) || TextUtils.isEmpty(String.valueOf(value))) {
+        if (Utils.isEmpty(key) || Utils.isEmpty(String.valueOf(value))) {
             throw new IllegalArgumentException("Key and value cannot be null or empty");
         }
         return new Piece(key, value);
@@ -77,7 +75,7 @@ public class Piece {
     }
 
     public Piece color(String hex) {
-        if (TextUtils.isEmpty(hex)) {
+        if (Utils.isEmpty(hex)) {
             throw new IllegalArgumentException("Hex value of the color cannot be null or empty");
         }
 

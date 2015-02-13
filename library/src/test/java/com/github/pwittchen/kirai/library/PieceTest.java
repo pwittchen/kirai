@@ -15,12 +15,12 @@
  */
 package com.github.pwittchen.kirai.library;
 
-import android.test.AndroidTestCase;
+import junit.framework.TestCase;
 
 /**
  * This test can be executed with an Android device or emulator.
  */
-public class PieceTest extends AndroidTestCase {
+public class PieceTest extends TestCase {
 
     private String testKey;
     private String testValue;
