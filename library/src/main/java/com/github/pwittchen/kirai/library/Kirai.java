@@ -125,7 +125,7 @@ public final class Kirai {
 
     /**
      * Sets custom string formatter. It's created for Unit Tests.
-     * Default formatter format HTML tags.
+     * Default formatter uses HTML tags for formatting.
      * Please be careful with this method and use it only when necessary!
      *
      * @param formatter implementation of formatter interface
