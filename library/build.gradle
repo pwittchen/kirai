@@ -22,6 +22,13 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+    testCompile('com.google.truth:truth:0.25') {
+        exclude group: 'junit' // Android has JUnit built in
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2.1'
 }
 
 apply from: '../maven_push.gradle'

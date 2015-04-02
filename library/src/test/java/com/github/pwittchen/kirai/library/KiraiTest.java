@@ -15,27 +15,29 @@
  */
 package com.github.pwittchen.kirai.library;
 
-import junit.framework.TestCase;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
-/**
- * This test can be executed with an Android device or emulator.
- */
-public class KiraiTest extends TestCase {
+import static com.google.common.truth.Truth.assertThat;
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
+@RunWith(JUnit4.class)
+public class KiraiTest {
+
+    @Test
+    public void testKiraiShouldSetAnInputAndNotBeNull() {
+        // given
+        String sampleString = "sample string";
+
+        // when
+        Kirai kirai = Kirai.from(sampleString);
+
+        // then
+        assertThat(kirai).isNotNull();
     }
 
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-        /**
-         * Test cleaning operations can be executed here.
-         * Right now, we don't have to do anything like that, but we keep this method as a template.
-         */
-    }
-
+    @Test
     public void testStringShouldBeBalanced() {
         // given
         String testTagOne = "tag_one";
@@ -49,56 +51,45 @@ public class KiraiTest extends TestCase {
         // no exception should occur
     }
 
+    @Test(expected = IllegalArgumentException.class)
     public void testShouldThrowExceptionWhenStringIsNotBeBalanced() {
         // given
         String testTagOne = "tag_one";
         String testTagTwo = "tag_two";
         String testNotBalancedString = "Sample text } {{ {" + testTagOne + "} and {" + testTagTwo + "} { rest of the sentence.";
-        String expectedExceptionMessage = "Braces in provided string are not balanced";
 
-        try {
-            // when
-            Kirai.from(testNotBalancedString);
-            // then
-            fail();
-        } catch (IllegalArgumentException e) {
-            // and then
-            assertEquals(e.getMessage(), expectedExceptionMessage);
-        }
+        // when
+        Kirai.from(testNotBalancedString);
+
+        // then
+        // throw an exception
     }
 
+    @Test(expected = IllegalArgumentException.class)
     public void testShouldThrowExceptionWhenInputStringIsNull() {
         // given
         String testInputString = null;
-        String expectedExceptionMessage = "Input string cannot be null or empty";
 
-        try {
-            // when
-            Kirai.from(testInputString);
-            // then
-            fail();
-        } catch (IllegalArgumentException e) {
-            // and then
-            assertEquals(e.getMessage(), expectedExceptionMessage);
-        }
+        // when
+        Kirai.from(testInputString);
+
+        // then
+        // throw an exception
     }
 
+    @Test(expected = IllegalArgumentException.class)
     public void testShouldThrowExceptionWhenInputStringIsEmpty() {
         // given
         String testInputString = "";
-        String expectedExceptionMessage = "Input string cannot be null or empty";
 
-        try {
-            // when
-            Kirai.from(testInputString);
-            // then
-            fail();
-        } catch (IllegalArgumentException e) {
-            // and then
-            assertEquals(e.getMessage(), expectedExceptionMessage);
-        }
+        // when
+        Kirai.from(testInputString);
+
+        // then
+        // throw an exception
     }
 
+    @Test(expected = IllegalArgumentException.class)
     public void testShouldThrowExceptionWhenKeyAndValueAreNull() {
         // given
         String testTagOne = "tag_one";
@@ -106,19 +97,15 @@ public class KiraiTest extends TestCase {
         String testBalancedString = "Sample text {" + testTagOne + "} and {" + testTagTwo + "} rest of the sentence.";
         String nullTestKey = null;
         String nullTestValue = null;
-        String expectedExceptionMessage = "Key and value cannot be null or empty";
 
-        try {
-            // when
-            Kirai.from(testBalancedString).put(nullTestKey, nullTestValue);
-            // then
-            fail();
-        } catch (IllegalArgumentException e) {
-            // and then
-            assertEquals(e.getMessage(), expectedExceptionMessage);
-        }
+        // when
+        Kirai.from(testBalancedString).put(nullTestKey, nullTestValue);
+
+        // then
+        // throw an exception
     }
 
+    @Test(expected = IllegalArgumentException.class)
     public void testShouldThrowExceptionWhenKeyAndValueAreEmpty() {
         // given
         String testTagOne = "tag_one";
@@ -126,37 +113,29 @@ public class KiraiTest extends TestCase {
         String testBalancedString = "Sample text {" + testTagOne + "} and {" + testTagTwo + "} rest of the sentence.";
         String emptyTestKey = "";
         String emptyTestValue = "";
-        String expectedExceptionMessage = "Key and value cannot be null or empty";
 
-        try {
-            // when
-            Kirai.from(testBalancedString).put(emptyTestKey, emptyTestValue);
-            // then
-            fail();
-        } catch (IllegalArgumentException e) {
-            // and then
-            assertEquals(e.getMessage(), expectedExceptionMessage);
-        }
+        // when
+        Kirai.from(testBalancedString).put(emptyTestKey, emptyTestValue);
+
+        // then
+        // throw an exception
     }
 
+    @Test(expected = IllegalArgumentException.class)
     public void testShouldThrowExceptionWhenPieceIsNull() {
         // given
         Piece nullPiece = null;
         String testTagOne = "tag_one";
         String testInputString = "Sample text {" + testTagOne + "} rest of the sentence.";
-        String expectedExceptionMessage = "Piece object cannot be null";
 
-        try {
-            // when
-            Kirai.from(testInputString).put(nullPiece);
-            // then
-            fail();
-        } catch (IllegalArgumentException e) {
-            // and then
-            assertEquals(e.getMessage(), expectedExceptionMessage);
-        }
+        // when
+        Kirai.from(testInputString).put(nullPiece);
+
+        // then
+        // throw an exception
     }
 
+    @Test(expected = IllegalArgumentException.class)
     public void testShouldThrowExceptionWhenPieceHasKeyNotDefinedInInputString() {
         // given
         String testValue = "test value";
@@ -164,103 +143,158 @@ public class KiraiTest extends TestCase {
         Piece testPiece = Piece.put(notPresentTestTag, testValue);
         String testTagOne = "tag_one";
         String testInputString = "Sample text {" + testTagOne + "} rest of the sentence.";
-        String expectedExceptionMessage = "Tag {" + notPresentTestTag + "} was not defined in input string";
 
-        try {
-            // when
-            Kirai.from(testInputString).put(testPiece);
-            // then
-            fail();
-        } catch (IllegalArgumentException e) {
-            // and then
-            assertEquals(e.getMessage(), expectedExceptionMessage);
-        }
+        // when
+        Kirai.from(testInputString).put(testPiece);
+
+        // then
+        // throw an exception
     }
 
+    @Test
+    public void testPutShouldAddKeyAndValue() {
+        String testKey = "test_tag_present";
+        String testValue = "test value";
+        String testInputString = "Sample text {" + testKey + "} rest of the sentence.";
+        String expectedOutPutString = "Sample text " + testValue + " rest of the sentence.";
+
+        // when
+        CharSequence generatedCharSequence
+                = Kirai.from(testInputString)
+                .put(testKey, testValue)
+                .format();
+
+        // then
+        assertThat(generatedCharSequence).isEqualTo(expectedOutPutString);
+    }
+
+    @Test
+    public void testPutShouldAddPiece() {
+        String testKey = "test_tag_present";
+        String testValue = "test value";
+        String testInputString = "Sample text {" + testKey + "} rest of the sentence.";
+        String expectedOutPutString = "Sample text " + testValue + " rest of the sentence.";
+
+        // this formatter does nothing
+        // in Kirai class default formatter uses dependency to Android API
+        Formatter testFormatter = new Formatter() {
+            @Override
+            public CharSequence format(String input) {
+                return input;
+            }
+        };
+
+        // when
+        CharSequence generatedCharSequence
+                = Kirai.from(testInputString)
+                .formatter(testFormatter)
+                .put(Piece.put(testKey, testValue))
+                .format();
+
+        // then
+        assertThat(generatedCharSequence).isEqualTo(expectedOutPutString);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void testPutShouldThrowExceptionWhenKeyIsNotDefinedInInputString() {
         // given
         String presentTestTag = "test_tag_present";
         String notPresentTestTag = "test_tag_NOT_present";
         String testValue = "test value";
         String testInputString = "Sample text {" + presentTestTag + "} rest of the sentence.";
-        String expectedExceptionMessage = "Tag {" + notPresentTestTag + "} was not defined in input string";
 
-        try {
-            // when
-            Kirai.from(testInputString).put(notPresentTestTag, testValue);
-            // then
-            fail();
-        } catch (IllegalArgumentException e) {
-            // and then
-            assertEquals(e.getMessage(), expectedExceptionMessage);
-        }
+        // when
+        Kirai.from(testInputString).put(notPresentTestTag, testValue);
+
+        // then
+        // throw an exception
     }
 
+    @Test(expected = IllegalArgumentException.class)
     public void testPutShouldThrowExceptionWhenKeyStartsFromNumber() {
         // given
         String incorrectTestTag = "1_incorrect_tag";
         String testInputString = "Sample text {" + incorrectTestTag + "} rest of the sentence.";
-        String expectedExceptionMessage = "Tags have to start from lower case letter and can contain only lower case letters [a-z] numbers [0-9] and underscore [_]";
 
-        try {
-            // when
-            Kirai.from(testInputString);
-            // then
-            fail();
-        } catch (IllegalArgumentException e) {
-            // and then
-            assertEquals(e.getMessage(), expectedExceptionMessage);
-        }
+        // when
+        Kirai.from(testInputString);
+
+        // then
+        // throw an exception
     }
 
+    @Test(expected = IllegalArgumentException.class)
     public void testPutShouldThrowExceptionWhenKeyStartsFromUnderscore() {
         // given
         String incorrectTestTag = "_incorrect_tag";
         String testInputString = "Sample text {" + incorrectTestTag + "} rest of the sentence.";
-        String expectedExceptionMessage = "Tags have to start from lower case letter and can contain only lower case letters [a-z] numbers [0-9] and underscore [_]";
 
-        try {
-            // when
-            Kirai.from(testInputString);
-            // then
-            fail();
-        } catch (IllegalArgumentException e) {
-            // and then
-            assertEquals(e.getMessage(), expectedExceptionMessage);
-        }
+        // when
+        Kirai.from(testInputString);
+
+        // then
+        // throw an exception
     }
 
+    @Test(expected = IllegalArgumentException.class)
     public void testPutShouldThrowExceptionWhenKeyStartsFromSpecialCharacter() {
         // given
         String incorrectTestTag = "!_incorrect_tag";
         String testInputString = "Sample text {" + incorrectTestTag + "} rest of the sentence.";
-        String expectedExceptionMessage = "Tags have to start from lower case letter and can contain only lower case letters [a-z] numbers [0-9] and underscore [_]";
 
-        try {
-            // when
-            Kirai.from(testInputString);
-            // then
-            fail();
-        } catch (IllegalArgumentException e) {
-            // and then
-            assertEquals(e.getMessage(), expectedExceptionMessage);
-        }
+        // when
+        Kirai.from(testInputString);
+
+        // then
+        // throw an exception
     }
 
+    @Test(expected = IllegalArgumentException.class)
     public void testPutShouldThrowExceptionWhenKeyContainsSpecialCharacters() {
         // given
         String incorrectTestTag = "#!@ tag &^*_";
         String testInputString = "Sample text {" + incorrectTestTag + "} rest of the sentence.";
-        String expectedExceptionMessage = "Tags have to start from lower case letter and can contain only lower case letters [a-z] numbers [0-9] and underscore [_]";
 
-        try {
-            // when
-            Kirai.from(testInputString);
-            // then
-            fail();
-        } catch (IllegalArgumentException e) {
-            // and then
-            assertEquals(e.getMessage(), expectedExceptionMessage);
-        }
+        // when
+        Kirai.from(testInputString);
+
+        // then
+        // throw an exception
+    }
+
+    @Test
+    public void testIsEmptyShouldReturnTrueForEmptyString() {
+        // given
+        String emptyString = "";
+
+        // when
+        boolean isEmpty = Utils.isEmpty(emptyString);
+
+        // then
+        assertThat(isEmpty).isTrue();
+    }
+
+    @Test
+    public void testIsEmptyShouldReturnTrueForNull() {
+        // given
+        String nullString = null;
+
+        // when
+        boolean isEmpty = Utils.isEmpty(nullString);
+
+        // then
+        assertThat(isEmpty).isTrue();
+    }
+
+    @Test
+    public void testIsEmptyShouldReturnFalseForNotEmptyString() {
+        // given
+        String notEmptyString = "string, which is not empty";
+
+        // when
+        boolean isEmpty = Utils.isEmpty(notEmptyString);
+
+        // then
+        assertThat(isEmpty).isFalse();
     }
 }

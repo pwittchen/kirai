@@ -15,32 +15,27 @@
  */
 package com.github.pwittchen.kirai.library;
 
-import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
-/**
- * This test can be executed with an Android device or emulator.
- */
-public class PieceTest extends TestCase {
+import static com.google.common.truth.Truth.assertThat;
+
+
+@RunWith(JUnit4.class)
+public class PieceTest {
 
     private String testKey;
     private String testValue;
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
+    @Before
+    public void setUp() {
         testKey = "testKey";
         testValue = "testValue";
     }
 
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-        /**
-         * Test cleaning operations can be executed here.
-         * Right now, we don't have to do anything like that, but we keep this method as a template.
-         */
-    }
-
+    @Test
     public void testPut() throws Exception {
         // given
         // data in setUp() method
@@ -49,44 +44,37 @@ public class PieceTest extends TestCase {
         Piece piece = Piece.put(testKey, testValue);
 
         // then
-        assertEquals(piece.getKey(), testKey);
-        assertEquals(piece.getValue(), testValue);
+        assertThat(piece.getKey()).isEqualTo(testKey);
+        assertThat(piece.getValue()).isEqualTo(testValue);
     }
 
+    @Test(expected = IllegalArgumentException.class)
     public void testPutShouldThrowExceptionWhenKeyAndValueAreNull() throws Exception {
         // given
         String nullTestKey = null;
         String nullTestValue = null;
-        String expectedExceptionMessage = "Key and value cannot be null or empty";
 
-        try {
-            // when
-            Piece.put(nullTestKey, nullTestValue);
-            // then
-            fail();
-        } catch (IllegalArgumentException e) {
-            // and then
-            assertEquals(e.getMessage(), expectedExceptionMessage);
-        }
+        // when
+        Piece.put(nullTestKey, nullTestValue);
+
+        // then
+        // throw an exception
     }
 
+    @Test(expected = IllegalArgumentException.class)
     public void testPutShouldThrowExceptionWhenKeyAndValueAreEmpty() throws Exception {
         // given
         String emptyTestKey = "";
         String emptyTestValue = "";
-        String expectedExceptionMessage = "Key and value cannot be null or empty";
 
-        try {
-            // when
-            Piece.put(emptyTestKey, emptyTestValue);
-            // then
-            fail();
-        } catch (IllegalArgumentException e) {
-            // and then
-            assertEquals(e.getMessage(), expectedExceptionMessage);
-        }
+        // when
+        Piece.put(emptyTestKey, emptyTestValue);
+
+        // then
+        // throw an exception
     }
 
+    @Test
     public void testBold() throws Exception {
         // given
         String expectedFormattedValue = String.format(Piece.STRONG_FORMAT, testValue);
@@ -95,9 +83,10 @@ public class PieceTest extends TestCase {
         Piece piece = Piece.put(testKey, testValue).bold();
 
         // then
-        assertEquals(piece.getValue(), expectedFormattedValue);
+        assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
     }
 
+    @Test
     public void testItalic() throws Exception {
         // given
         String expectedFormattedValue = String.format(Piece.ITALIC_FORMAT, testValue);
@@ -106,9 +95,10 @@ public class PieceTest extends TestCase {
         Piece piece = Piece.put(testKey, testValue).italic();
 
         // then
-        assertEquals(piece.getValue(), expectedFormattedValue);
+        assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
     }
 
+    @Test
     public void testUnderline() throws Exception {
         // given
         String expectedFormattedValue = String.format(Piece.UNDERLINE_FORMAT, testValue);
@@ -117,9 +107,10 @@ public class PieceTest extends TestCase {
         Piece piece = Piece.put(testKey, testValue).underline();
 
         // then
-        assertEquals(piece.getValue(), expectedFormattedValue);
+        assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
     }
 
+    @Test
     public void testBig() throws Exception {
         // given
         String expectedFormattedValue = String.format(Piece.BIG_FORMAT, testValue);
@@ -128,9 +119,10 @@ public class PieceTest extends TestCase {
         Piece piece = Piece.put(testKey, testValue).big();
 
         // then
-        assertEquals(piece.getValue(), expectedFormattedValue);
+        assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
     }
 
+    @Test
     public void testSmall() throws Exception {
         // given
         String expectedFormattedValue = String.format(Piece.SMALL_FORMAT, testValue);
@@ -139,9 +131,10 @@ public class PieceTest extends TestCase {
         Piece piece = Piece.put(testKey, testValue).small();
 
         // then
-        assertEquals(piece.getValue(), expectedFormattedValue);
+        assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
     }
 
+    @Test
     public void testSub() throws Exception {
         // given
         String expectedFormattedValue = String.format(Piece.SUB_FORMAT, testValue);
@@ -150,9 +143,10 @@ public class PieceTest extends TestCase {
         Piece piece = Piece.put(testKey, testValue).sub();
 
         // then
-        assertEquals(piece.getValue(), expectedFormattedValue);
+        assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
     }
 
+    @Test
     public void testSup() throws Exception {
         // given
         String expectedFormattedValue = String.format(Piece.SUP_FORMAT, testValue);
@@ -161,9 +155,10 @@ public class PieceTest extends TestCase {
         Piece piece = Piece.put(testKey, testValue).sup();
 
         // then
-        assertEquals(piece.getValue(), expectedFormattedValue);
+        assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
     }
 
+    @Test
     public void testColor() throws Exception {
         // given
         String testColorHexValue = "#FF0000";
@@ -173,41 +168,34 @@ public class PieceTest extends TestCase {
         Piece piece = Piece.put(testKey, testValue).color(testColorHexValue);
 
         // then
-        assertEquals(piece.getValue(), expectedFormattedValue);
+        assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
     }
 
+    @Test(expected = IllegalArgumentException.class)
     public void testColorShouldThrowExceptionWhenHexIsNull() throws Exception {
         // given
         String nullTestColorHexValue = null;
-        String expectedExceptionMessage = "Hex value of the color cannot be null or empty";
 
         // when
-        try {
-            Piece.put(testKey, testValue).color(nullTestColorHexValue);
-            // then
-            fail();
-        } catch (IllegalArgumentException e) {
-            // and then
-            assertEquals(e.getMessage(), expectedExceptionMessage);
-        }
+        Piece.put(testKey, testValue).color(nullTestColorHexValue);
+
+        // then
+        // throw an exception
     }
 
+    @Test(expected = IllegalArgumentException.class)
     public void testColorShouldThrowExceptionWhenHexIsEmpty() throws Exception {
         // given
         String emptyTestColorHexValue = "";
-        String expectedExceptionMessage = "Hex value of the color cannot be null or empty";
 
         // when
-        try {
-            Piece.put(testKey, testValue).color(emptyTestColorHexValue);
-            // then
-            fail();
-        } catch (IllegalArgumentException e) {
-            // and then
-            assertEquals(e.getMessage(), expectedExceptionMessage);
-        }
+        Piece.put(testKey, testValue).color(emptyTestColorHexValue);
+
+        // then
+        // throw an exception
     }
 
+    @Test
     public void testColorHexShouldContainSevenCharacters() throws Exception {
         // given
         String correctTestColorHexValue = "#FFFFFF";
@@ -219,38 +207,31 @@ public class PieceTest extends TestCase {
         // no exception occurs
     }
 
+    @Test(expected = IllegalArgumentException.class)
     public void testColorShouldThrowExceptionWhenHexDoesNotContainSevenCharacters() throws Exception {
         // given
         String incorrectTestColorHexValue = "#FFFFFFF";
-        String expectedExceptionMessage = "Hex value have to contain 7 characters including hash sign (#)";
 
-        try {
-            // when
-            Piece.put(testKey, testValue).color(incorrectTestColorHexValue);
-            // then
-            fail();
-        } catch (IllegalArgumentException e) {
-            // and then
-            assertEquals(e.getMessage(), expectedExceptionMessage);
-        }
+        // when
+        Piece.put(testKey, testValue).color(incorrectTestColorHexValue);
+
+        // then
+        // throw an exception
     }
 
+    @Test(expected = IllegalArgumentException.class)
     public void testColorShouldThrowExceptionWhenHexDoesNotStartFromHash() throws Exception {
         // given
         String incorrectTestColorHexValue = "F#FFFFF";
-        String expectedExceptionMessage = "Hex value have to start from hash sign (#)";
 
-        try {
-            // when
-            Piece.put(testKey, testValue).color(incorrectTestColorHexValue);
-            // then
-            fail();
-        } catch (IllegalArgumentException e) {
-            // and then
-            assertEquals(e.getMessage(), expectedExceptionMessage);
-        }
+        // when
+        Piece.put(testKey, testValue).color(incorrectTestColorHexValue);
+
+        // then
+        // throw an exception
     }
 
+    @Test
     public void testAllFormats() {
         /**
          * I realize that setting big and small at the same time doesn't make sense
@@ -284,6 +265,6 @@ public class PieceTest extends TestCase {
                 .color(testColorHexValue);
 
         // then
-        assertEquals(piece.getValue(), expectedFormattedValue);
+        assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
     }
 }

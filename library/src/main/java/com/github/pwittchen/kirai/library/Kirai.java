@@ -56,8 +56,14 @@ public final class Kirai {
     private final static String REGEX_VALID_TAG = "[a-z]{1}[a-z0-9_]*";
     private final static Pattern REGEX_TAG = Pattern.compile("\\" + BRACE_START + "(.+?)\\" + BRACE_END);
     private static String input;
-    private List<Piece> pieces = new ArrayList<>();
     private List<String> tags;
+    private List<Piece> pieces = new ArrayList<>();
+    private Formatter formatter = new Formatter() {
+        @Override
+        public CharSequence format(String input) {
+            return Html.fromHtml(input);
+        }
+    };
 
     private Kirai(String string) {
         input = string;
@@ -114,7 +120,20 @@ public final class Kirai {
             input = input.replace(BRACE_START + piece.getKey() + BRACE_END, String.valueOf(piece.getValue()));
         }
 
-        return Html.fromHtml(input);
+        return formatter.format(input);
+    }
+
+    /**
+     * Sets custom string formatter. It's created for Unit Tests.
+     * Default formatter format HTML tags.
+     * Please be careful with this method and use it only when necessary!
+     *
+     * @param formatter implementation of formatter interface
+     * @return Kirai object
+     */
+    public Kirai formatter(Formatter formatter) {
+        this.formatter = formatter;
+        return this;
     }
 
     /**
