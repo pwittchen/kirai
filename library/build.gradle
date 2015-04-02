@@ -24,5 +24,4 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-// Comment this to deploy to local maven repository
 apply from: '../maven_push.gradle'
