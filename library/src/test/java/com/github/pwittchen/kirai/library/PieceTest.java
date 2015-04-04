@@ -200,10 +200,11 @@ public class PieceTest {
         String correctTestColorHexValue = "#FFFFFF";
 
         // when
-        Piece.put(testKey, testValue).color(correctTestColorHexValue);
+        Piece piece = Piece.put(testKey, testValue).color(correctTestColorHexValue);
 
         // then
-        // no exception occurs
+        // no exception occurs and object is created
+        assertThat(piece).isNotNull();
     }
 
     @Test(expected = IllegalArgumentException.class)

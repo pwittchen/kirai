@@ -33,6 +33,7 @@ public class KiraiTest {
         Kirai kirai = Kirai.from(sampleString);
 
         // then
+        // no exception is thrown and object is created
         assertThat(kirai).isNotNull();
     }
 
@@ -44,10 +45,11 @@ public class KiraiTest {
         String testBalancedString = "Sample text {" + testTagOne + "} and {" + testTagTwo + "} rest of the sentence.";
 
         // when
-        Kirai.from(testBalancedString);
+        Kirai kirai = Kirai.from(testBalancedString);
 
         // then
-        // no exception should occur
+        // no exception is thrown and object is created
+        assertThat(kirai).isNotNull();
     }
 
     @Test(expected = IllegalArgumentException.class)
