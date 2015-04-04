@@ -1,7 +1,7 @@
 Kirai - flavored Android string formatting
 ==========================================
 
-[![Build Status](https://travis-ci.org/pwittchen/kirai.svg?branch=master)](https://travis-ci.org/pwittchen/kirai)  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Kirai-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1391) [![Maven Central](https://img.shields.io/maven-central/v/com.github.pwittchen.kirai/library.svg?style=flat)](http://search.maven.org/#artifactdetails%7Ccom.github.pwittchen.kirai%7Clibrary%7C1.0.0%7Caar)
+[![Build Status](https://travis-ci.org/pwittchen/kirai.svg?branch=master)](https://travis-ci.org/pwittchen/kirai)  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Kirai-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1391) ![Maven Central](https://img.shields.io/maven-central/v/com.github.pwittchen.kirai/library.svg?style=flat)
 
 Kirai means *phrase* in Swahili language.
 
@@ -46,7 +46,7 @@ You can depend on the library through Maven:
 <dependency>
     <groupId>com.github.pwittchen.kirai</groupId>
     <artifactId>library</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
@@ -54,7 +54,7 @@ or through Gradle:
 
 ```groovy
 dependencies {
-  compile 'com.github.pwittchen.kirai:library:1.0.0'
+  compile 'com.github.pwittchen.kirai:library:1.0.1'
 }
 ```
 
