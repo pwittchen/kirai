@@ -2,8 +2,10 @@ language: android
 
 android:
   components:
-    - build-tools-21.1.1
-    - android-21
+    - build-tools-23.0.1
+    - android-23
+    - extra-android-m2repository
+    - extra-google-m2repository
 
 install:
   # Check install section: http://docs.travis-ci.com/user/build-configuration/#install
@@ -11,4 +13,4 @@ install:
   - true
 
 script:
-  - ./gradlew build test
+  - ./gradlew clean build test
