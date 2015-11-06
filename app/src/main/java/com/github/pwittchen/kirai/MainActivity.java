@@ -16,37 +16,43 @@
 package com.github.pwittchen.kirai;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.widget.TextView;
-
+import com.github.pwittchen.kirai.library.Formatter;
 import com.github.pwittchen.kirai.library.Kirai;
 import com.github.pwittchen.kirai.library.Piece;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
-    private TextView textViewOne;
-    private TextView textViewTwo;
+  private TextView textViewOne;
+  private TextView textViewTwo;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        textViewOne = (TextView) findViewById(R.id.text_view_one);
-        textViewTwo = (TextView) findViewById(R.id.text_view_two);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    textViewOne = (TextView) findViewById(R.id.text_view_one);
+    textViewTwo = (TextView) findViewById(R.id.text_view_two);
 
-        CharSequence formattedOne = Kirai
-                .from("Hi {first_name}, your are {age} years old.")
-                .put("first_name", "Piotr")
-                .put("age", 26)
-                .format();
+    CharSequence formattedOne = Kirai
+        .from("Hi {first_name}, you are {age} years old.")
+        .put("first_name", "Piotr")
+        .put("age", 26)
+        .format();
 
-        CharSequence formattedTwo = Kirai
-                .from("You are {position} in {location}.")
-                .put(Piece.put("position", "Android Developer").bold().italic())
-                .put(Piece.put("location", "Poland").underline().color("#FF0000"))
-                .format();
+    CharSequence formattedTwo = Kirai
+        .from("You are {position} from {location}.")
+        .put(Piece.put("position", "Android Developer").bold().italic())
+        .put(Piece.put("location", "Poland").underline().color("#FF0000"))
+        .format(new Formatter() {
+          @Override
+          public CharSequence format(String input) {
+            return Html.fromHtml(input);
+          }
+        });
 
-        textViewOne.setText(formattedOne);
-        textViewTwo.setText(formattedTwo);
-    }
+    textViewOne.setText(formattedOne);
+    textViewTwo.setText(formattedTwo);
+  }
 }

@@ -173,17 +173,8 @@ import static com.google.common.truth.Truth.assertThat;
     String testInputString = "Sample text {" + testKey + "} rest of the sentence.";
     String expectedOutPutString = "Sample text " + testValue + " rest of the sentence.";
 
-    // this formatter does nothing
-    // in Kirai class default formatter uses dependency to Android API
-    Formatter testFormatter = new Formatter() {
-      @Override public CharSequence format(String input) {
-        return input;
-      }
-    };
-
     // when
     CharSequence generatedCharSequence = Kirai.from(testInputString)
-        .formatter(testFormatter)
         .put(Piece.put(testKey, testValue))
         .format();
 

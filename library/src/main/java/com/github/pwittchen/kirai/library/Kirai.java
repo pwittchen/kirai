@@ -15,8 +15,6 @@
  */
 package com.github.pwittchen.kirai.library;
 
-import android.text.Html;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -24,31 +22,31 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Kirai ("phrase" in Swahili language) - flavored Android string formatting library
- * A fluent API for formatting Strings. Canonical usage:
- * Basic:
+ * Kirai ("phrase" in Swahili language) - flavored Android string formatting library A fluent API
+ * for formatting Strings. Canonical usage: Basic:
  * <pre>
  *   CharSequence formatted = Kirai.from("Hi {first_name}, you are {age} years old.")
- *       .put("first_name", firstName)
- *       .put("age", age)
- *       .format();
+ *     .put("first_name", firstName)
+ *     .put("age", age)
+ *     .format();
  * </pre>
  * Flavored:
  * <pre>
  *   CharSequence formatted = Kirai.from("Hi {first_name}, you are {age} years old.")
- *       .put(Piece.put("first_name", firstName).bold().italic().big())
- *       .put(Piece.put("age", age).underline().color("#FF0000"))
- *       .format();
+ *     .put(Piece.put("first_name", firstName).bold().italic().big())
+ *     .put(Piece.put("age", age).underline().color("#FF0000"))
+ *     .format(new Formatter() {
+ *       @Override
+ *       public CharSequence format(String input) {
+ *         return Html.fromHtml(input);
+ *        }
+ *      }
  * </pre>
- * <ul>
- * <li>Surround keys with curly braces</li>
- * <li>Keys start with lowercase letters followed by lowercase letters and underscores.</li>
- * <li>Can be formatted for TextView (bold, italic, underline, big, small, sub, sup).</li>
- * <li>Can be colored for TextView with HEX value followed by hash sign.</li>
- * <li>Fails on any mismatched keys.</li>
- * <li>Fails on not balanced braces in input.</li>
- * <li>Fails on incorrect, empty or null input data.</li>
- * </ul>
+ * <ul> <li>Surround keys with curly braces</li> <li>Keys start with lowercase letters followed by
+ * lowercase letters and underscores.</li> <li>Can be formatted for TextView (bold, italic,
+ * underline, big, small, sub, sup).</li> <li>Can be colored for TextView with HEX value followed by
+ * hash sign.</li> <li>Fails on any mismatched keys.</li> <li>Fails on not balanced braces in
+ * input.</li> <li>Fails on incorrect, empty or null input data.</li> </ul>
  */
 public final class Kirai {
   private final static char BRACE_START = '{';
@@ -59,11 +57,6 @@ public final class Kirai {
   private static String input;
   private List<String> tags;
   private List<Piece> pieces = new ArrayList<>();
-  private Formatter formatter = new Formatter() {
-    @Override public CharSequence format(String input) {
-      return Html.fromHtml(input);
-    }
-  };
 
   private Kirai(String string) {
     input = string;
@@ -114,6 +107,22 @@ public final class Kirai {
     return this;
   }
 
+  /**
+   * Returns CharSequence formatted with custom formatter implementation
+   *
+   * @param formatter implementation
+   * @return formatted CharSequence
+   */
+  public CharSequence format(Formatter formatter) {
+    CharSequence input = format();
+    return formatter.format(String.valueOf(input));
+  }
+
+  /**
+   * Returns formatted CharSequence without additional operations
+   *
+   * @return formatted CharSequence
+   */
   public CharSequence format() {
     if (pieces.isEmpty()) {
       return input;
@@ -124,26 +133,12 @@ public final class Kirai {
           input.replace(BRACE_START + piece.getKey() + BRACE_END, String.valueOf(piece.getValue()));
     }
 
-    return formatter.format(input);
+    return input;
   }
 
   /**
-   * Sets custom string formatter. It's created for Unit Tests.
-   * Default formatter uses HTML tags for formatting.
-   * Please be careful with this method and use it only when necessary!
-   *
-   * @param formatter implementation of formatter interface
-   * @return Kirai object
-   */
-  public Kirai formatter(Formatter formatter) {
-    this.formatter = formatter;
-    return this;
-  }
-
-  /**
-   * Checks whether input string is balanced
-   * Analyzes only curly braces like { and }
-   * and ignores other characters
+   * Checks whether input string is balanced Analyzes only curly braces like { and } and ignores
+   * other characters
    *
    * @return true if string is balanced
    */
