@@ -63,6 +63,13 @@ Tests
 
 Unit Tests are available in `library/src/test` directory. They don't have any dependencies to Android API and can be run from Android Studio or CLI with Gradle without any emulator or attached device thanks to enabled [Unit Testing Support](http://tools.android.com/tech-docs/unit-testing-support). Tests were written according to TDD methodology. They determine library specification and check if project is fault-tolerant.
 
+Code style
+----------
+
+Code style used in the project is called `Square` from Java Code Styles repository by Square available at: https://github.com/square/java-code-styles.
+
+
+
 License
 -------
 
