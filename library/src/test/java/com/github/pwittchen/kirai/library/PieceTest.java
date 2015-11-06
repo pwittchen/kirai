@@ -22,17 +22,22 @@ import org.junit.runners.JUnit4;
 
 import static com.google.common.truth.Truth.assertThat;
 
-@RunWith(JUnit4.class) public class PieceTest {
+@RunWith(JUnit4.class)
+public class PieceTest {
 
   private String testKey;
   private String testValue;
+  private Syntax htmlSyntax;
 
-  @Before public void setUp() {
+  @Before
+  public void setUp() {
     testKey = "testKey";
     testValue = "testValue";
+    htmlSyntax = new HtmlSyntax();
   }
 
-  @Test public void testPut() throws Exception {
+  @Test
+  public void testPut() throws Exception {
     // given
     // data in setUp() method
 
@@ -70,9 +75,10 @@ import static com.google.common.truth.Truth.assertThat;
     // throw an exception
   }
 
-  @Test public void testBold() throws Exception {
+  @Test
+  public void testBoldHtml() throws Exception {
     // given
-    String expectedFormattedValue = String.format(Piece.STRONG_FORMAT, testValue);
+    String expectedFormattedValue = String.format(htmlSyntax.getBoldFormat(), testValue);
 
     // when
     Piece piece = Piece.put(testKey, testValue).bold();
@@ -81,9 +87,10 @@ import static com.google.common.truth.Truth.assertThat;
     assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
   }
 
-  @Test public void testItalic() throws Exception {
+  @Test
+  public void testItalicHtml() throws Exception {
     // given
-    String expectedFormattedValue = String.format(Piece.ITALIC_FORMAT, testValue);
+    String expectedFormattedValue = String.format(htmlSyntax.getItalicFormat(), testValue);
 
     // when
     Piece piece = Piece.put(testKey, testValue).italic();
@@ -92,9 +99,10 @@ import static com.google.common.truth.Truth.assertThat;
     assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
   }
 
-  @Test public void testUnderline() throws Exception {
+  @Test
+  public void testUnderlineHtml() throws Exception {
     // given
-    String expectedFormattedValue = String.format(Piece.UNDERLINE_FORMAT, testValue);
+    String expectedFormattedValue = String.format(htmlSyntax.getUnderlineFormat(), testValue);
 
     // when
     Piece piece = Piece.put(testKey, testValue).underline();
@@ -103,9 +111,10 @@ import static com.google.common.truth.Truth.assertThat;
     assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
   }
 
-  @Test public void testBig() throws Exception {
+  @Test
+  public void testBigHtml() throws Exception {
     // given
-    String expectedFormattedValue = String.format(Piece.BIG_FORMAT, testValue);
+    String expectedFormattedValue = String.format(htmlSyntax.getBigFormat(), testValue);
 
     // when
     Piece piece = Piece.put(testKey, testValue).big();
@@ -114,9 +123,10 @@ import static com.google.common.truth.Truth.assertThat;
     assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
   }
 
-  @Test public void testSmall() throws Exception {
+  @Test
+  public void testSmallHtml() throws Exception {
     // given
-    String expectedFormattedValue = String.format(Piece.SMALL_FORMAT, testValue);
+    String expectedFormattedValue = String.format(htmlSyntax.getSmallFormat(), testValue);
 
     // when
     Piece piece = Piece.put(testKey, testValue).small();
@@ -125,9 +135,10 @@ import static com.google.common.truth.Truth.assertThat;
     assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
   }
 
-  @Test public void testSub() throws Exception {
+  @Test
+  public void testSubHtml() throws Exception {
     // given
-    String expectedFormattedValue = String.format(Piece.SUB_FORMAT, testValue);
+    String expectedFormattedValue = String.format(htmlSyntax.getSubFormat(), testValue);
 
     // when
     Piece piece = Piece.put(testKey, testValue).sub();
@@ -136,9 +147,10 @@ import static com.google.common.truth.Truth.assertThat;
     assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
   }
 
-  @Test public void testSup() throws Exception {
+  @Test
+  public void testSupHtml() throws Exception {
     // given
-    String expectedFormattedValue = String.format(Piece.SUP_FORMAT, testValue);
+    String expectedFormattedValue = String.format(htmlSyntax.getSupFormat(), testValue);
 
     // when
     Piece piece = Piece.put(testKey, testValue).sup();
@@ -147,10 +159,11 @@ import static com.google.common.truth.Truth.assertThat;
     assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
   }
 
-  @Test public void testColor() throws Exception {
+  @Test
+  public void testColorHtml() throws Exception {
     // given
     String testColorHexValue = "#FF0000";
-    String expectedFormattedValue = String.format(Piece.COLOR_FORMAT, testColorHexValue, testValue);
+    String expectedFormattedValue = String.format(htmlSyntax.getColorFormat(), testColorHexValue, testValue);
 
     // when
     Piece piece = Piece.put(testKey, testValue).color(testColorHexValue);
@@ -160,7 +173,7 @@ import static com.google.common.truth.Truth.assertThat;
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testColorShouldThrowExceptionWhenHexIsNull() throws Exception {
+  public void testColorShouldThrowExceptionWhenHexIsNullForHtml() throws Exception {
     // given
     String nullTestColorHexValue = null;
 
@@ -172,7 +185,7 @@ import static com.google.common.truth.Truth.assertThat;
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testColorShouldThrowExceptionWhenHexIsEmpty() throws Exception {
+  public void testColorShouldThrowExceptionWhenHexIsEmptyForHtml() throws Exception {
     // given
     String emptyTestColorHexValue = "";
 
@@ -183,7 +196,8 @@ import static com.google.common.truth.Truth.assertThat;
     // throw an exception
   }
 
-  @Test public void testColorHexShouldContainSevenCharacters() throws Exception {
+  @Test
+  public void testColorHexShouldContainSevenCharactersForHtml() throws Exception {
     // given
     String correctTestColorHexValue = "#FFFFFF";
 
@@ -196,7 +210,7 @@ import static com.google.common.truth.Truth.assertThat;
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testColorShouldThrowExceptionWhenHexDoesNotContainSevenCharacters() throws Exception {
+  public void testColorShouldThrowExceptionWhenHexDoesNotContainSevenCharactersForHtml() throws Exception {
     // given
     String incorrectTestColorHexValue = "#FFFFFFF";
 
@@ -208,7 +222,7 @@ import static com.google.common.truth.Truth.assertThat;
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testColorShouldThrowExceptionWhenHexDoesNotStartFromHash() throws Exception {
+  public void testColorShouldThrowExceptionWhenHexDoesNotStartFromHashForHtml() throws Exception {
     // given
     String incorrectTestColorHexValue = "F#FFFFF";
 
@@ -219,7 +233,8 @@ import static com.google.common.truth.Truth.assertThat;
     // throw an exception
   }
 
-  @Test public void testAllFormats() {
+  @Test
+  public void testAllFormatsHtml() {
     /**
      * I realize that setting big and small at the same time doesn't make sense
      * as well as setting sub and sup at the same time.
@@ -230,15 +245,15 @@ import static com.google.common.truth.Truth.assertThat;
     // given
     String expectedFormattedValue;
     String testColorHexValue = "#FF0000";
-    expectedFormattedValue = String.format(Piece.STRONG_FORMAT, testValue);
-    expectedFormattedValue = String.format(Piece.ITALIC_FORMAT, expectedFormattedValue);
-    expectedFormattedValue = String.format(Piece.UNDERLINE_FORMAT, expectedFormattedValue);
-    expectedFormattedValue = String.format(Piece.BIG_FORMAT, expectedFormattedValue);
-    expectedFormattedValue = String.format(Piece.SMALL_FORMAT, expectedFormattedValue);
-    expectedFormattedValue = String.format(Piece.SUB_FORMAT, expectedFormattedValue);
-    expectedFormattedValue = String.format(Piece.SUP_FORMAT, expectedFormattedValue);
+    expectedFormattedValue = String.format(htmlSyntax.getBoldFormat(), testValue);
+    expectedFormattedValue = String.format(htmlSyntax.getItalicFormat(), expectedFormattedValue);
+    expectedFormattedValue = String.format(htmlSyntax.getUnderlineFormat(), expectedFormattedValue);
+    expectedFormattedValue = String.format(htmlSyntax.getBigFormat(), expectedFormattedValue);
+    expectedFormattedValue = String.format(htmlSyntax.getSmallFormat(), expectedFormattedValue);
+    expectedFormattedValue = String.format(htmlSyntax.getSubFormat(), expectedFormattedValue);
+    expectedFormattedValue = String.format(htmlSyntax.getSupFormat(), expectedFormattedValue);
     expectedFormattedValue =
-        String.format(Piece.COLOR_FORMAT, testColorHexValue, expectedFormattedValue);
+        String.format(htmlSyntax.getColorFormat(), testColorHexValue, expectedFormattedValue);
 
     // when
     Piece piece = Piece.put(testKey, testValue)

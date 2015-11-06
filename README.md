@@ -15,20 +15,24 @@ Usage
 
 ```java
 CharSequence formatted = Kirai
-   .from("Hi {first_name}, your are {age} years old.")
-   .put("first_name", firstName)
-   .put("age", age)
-   .format();
+  .from("Hi {first_name}, your are {age} years old.")
+  .put("first_name", firstName)
+  .put("age", age)
+  .format();
 ```
 
 ### Flavored
 
 ```java
 CharSequence formatted = Kirai
-   .from("Hi {first_name}, your are {age} years old.")
-   .put(Piece.put("first_name", firstName).bold().italic().big())
-   .put(Piece.put("age", age).underline().color("#FF0000"))
-   .format();
+  .from("Hi {first_name}, your are {age} years old.")
+  .put(Piece.put("first_name", firstName).bold().italic().big())
+  .put(Piece.put("age", age).underline().color("#FF0000"))
+  .format(new Formatter() {
+    @Override public CharSequence format(String input) {
+      return Html.fromHtml(input);
+    }
+  }
 ```
 
 ### In Android TextView
@@ -67,8 +71,6 @@ Code style
 ----------
 
 Code style used in the project is called `Square` from Java Code Styles repository by Square available at: https://github.com/square/java-code-styles.
-
-
 
 License
 -------

@@ -15,6 +15,22 @@
  */
 package com.github.pwittchen.kirai.library;
 
-public interface Formatter {
-  CharSequence format(String input);
+public interface Syntax {
+  String getBoldFormat();
+
+  String getItalicFormat();
+
+  String getUnderlineFormat();
+
+  String getColorFormat();
+
+  void validateColorCode(String code);
+
+  String getBigFormat();
+
+  String getSmallFormat();
+
+  String getSubFormat();
+
+  String getSupFormat();
 }

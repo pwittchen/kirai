@@ -17,15 +17,20 @@ package com.github.pwittchen.kirai.library;
 
 public final class Utils {
   /**
-   * This method is copied from TextUtils class in Android SDK
-   * It was done in order to get rid of dependency to TextUtils class
-   * to run Unit Tests from Android Studio
+   * This method is copied from TextUtils class in Android SDK It was done in order to get rid of
+   * dependency to TextUtils class to run Unit Tests from Android Studio
    */
   public static boolean isEmpty(CharSequence str) {
     if (str == null || str.length() == 0) {
       return true;
     } else {
       return false;
+    }
+  }
+
+  public static void checkNotNull(Object object, String message) {
+    if (object == null) {
+      throw new IllegalArgumentException(message);
     }
   }
 }

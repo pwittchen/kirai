@@ -16,79 +16,76 @@
 package com.github.pwittchen.kirai.library;
 
 public final class Piece {
-  public final static String STRONG_FORMAT = "<strong>%s</strong>";
-  public final static String ITALIC_FORMAT = "<em>%s</em>";
-  public final static String UNDERLINE_FORMAT = "<u>%s</u>";
-  public final static String COLOR_FORMAT = "<font color='%s'>%s</font>";
-  public final static String BIG_FORMAT = "<big>%s</big>";
-  public final static String SMALL_FORMAT = "<small>%s</small>";
-  public final static String SUB_FORMAT = "<sub>%s</sub>";
-  public final static String SUP_FORMAT = "<sup>%s</sup>";
+  private Syntax syntax;
   private String key;
   private Object value;
 
   private Piece(String key, Object value) {
     this.key = key;
     this.value = value;
+    this.syntax = new HtmlSyntax();
+  }
+
+  private Piece(String key, Object value, Syntax syntax) {
+    new Piece(key, value);
+    this.syntax = syntax;
   }
 
   public static Piece put(String key, Object value) {
-    if (Utils.isEmpty(key) || Utils.isEmpty(String.valueOf(value))) {
-      throw new IllegalArgumentException("Key and value cannot be null or empty");
-    }
+    validatePair(key, value);
     return new Piece(key, value);
   }
 
+  public static Piece put(String key, Object value, Syntax syntax) {
+    validatePair(key, value);
+    Utils.checkNotNull(syntax, "syntax == null");
+    return new Piece(key, value, syntax);
+  }
+
+  private static void validatePair(String key, Object value) {
+    if (Utils.isEmpty(key) || Utils.isEmpty(String.valueOf(value))) {
+      throw new IllegalArgumentException("Key and value cannot be null or empty");
+    }
+  }
+
   public Piece bold() {
-    value = String.format(STRONG_FORMAT, value);
+    value = String.format(syntax.getBoldFormat(), value);
     return this;
   }
 
   public Piece italic() {
-    value = String.format(ITALIC_FORMAT, value);
+    value = String.format(syntax.getItalicFormat(), value);
     return this;
   }
 
   public Piece underline() {
-    value = String.format(UNDERLINE_FORMAT, value);
+    value = String.format(syntax.getUnderlineFormat(), value);
     return this;
   }
 
   public Piece big() {
-    value = String.format(BIG_FORMAT, value);
+    value = String.format(syntax.getBigFormat(), value);
     return this;
   }
 
   public Piece small() {
-    value = String.format(SMALL_FORMAT, value);
+    value = String.format(syntax.getSmallFormat(), value);
     return this;
   }
 
   public Piece sub() {
-    value = String.format(SUB_FORMAT, value);
+    value = String.format(syntax.getSubFormat(), value);
     return this;
   }
 
   public Piece sup() {
-    value = String.format(SUP_FORMAT, value);
+    value = String.format(syntax.getSupFormat(), value);
     return this;
   }
 
-  public Piece color(String hex) {
-    if (Utils.isEmpty(hex)) {
-      throw new IllegalArgumentException("Hex value of the color cannot be null or empty");
-    }
-
-    if (hex.length() != 7) {
-      throw new IllegalArgumentException(
-          "Hex value have to contain 7 characters including hash sign (#)");
-    }
-
-    if (hex.charAt(0) != '#') {
-      throw new IllegalArgumentException("Hex value have to start from hash sign (#)");
-    }
-
-    value = String.format(COLOR_FORMAT, hex, value);
+  public Piece color(String code) {
+    syntax.validateColorCode(code);
+    value = String.format(syntax.getColorFormat(), code, value);
     return this;
   }
 
