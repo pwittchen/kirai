@@ -1,6 +1,21 @@
 CHANGELOG
 =========
 
+v. 1.1.0
+--------
+*06 Nov 2015*
+
+- removed `formatter(...)` method from `Kirai` class
+- added `format(...)` method accepting implementation of `Formatter` interface to `Kirai` class
+- added `Syntax` interface and `HtmlSyntax` class implementing this interface
+- added `put(String key, Object value, Syntax syntax)` method to `Piece` class
+- set `HtmlSyntax` as default `Syntax` implementation in `Piece` class
+- removed dependencies to Android SDK
+- updated project dependencies
+- applied `Square` code style
+- updated tests, sample app and code snippets in `README.md`
+- added gh-pages with JavaDoc
+
 v. 1.0.1
 --------
 *03 Apr 2015*
