@@ -22,249 +22,236 @@ import org.junit.runners.JUnit4;
 
 import static com.google.common.truth.Truth.assertThat;
 
-@RunWith(JUnit4.class)
-public class PieceTest {
+@RunWith(JUnit4.class) public class PieceTest {
 
-    private String testKey;
-    private String testValue;
+  private String testKey;
+  private String testValue;
 
-    @Before
-    public void setUp() {
-        testKey = "testKey";
-        testValue = "testValue";
-    }
+  @Before public void setUp() {
+    testKey = "testKey";
+    testValue = "testValue";
+  }
 
-    @Test
-    public void testPut() throws Exception {
-        // given
-        // data in setUp() method
+  @Test public void testPut() throws Exception {
+    // given
+    // data in setUp() method
 
-        // when
-        Piece piece = Piece.put(testKey, testValue);
+    // when
+    Piece piece = Piece.put(testKey, testValue);
 
-        // then
-        assertThat(piece.getKey()).isEqualTo(testKey);
-        assertThat(piece.getValue()).isEqualTo(testValue);
-    }
+    // then
+    assertThat(piece.getKey()).isEqualTo(testKey);
+    assertThat(piece.getValue()).isEqualTo(testValue);
+  }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testPutShouldThrowExceptionWhenKeyAndValueAreNull() throws Exception {
-        // given
-        String nullTestKey = null;
-        String nullTestValue = null;
+  @Test(expected = IllegalArgumentException.class)
+  public void testPutShouldThrowExceptionWhenKeyAndValueAreNull() throws Exception {
+    // given
+    String nullTestKey = null;
+    String nullTestValue = null;
 
-        // when
-        Piece.put(nullTestKey, nullTestValue);
+    // when
+    Piece.put(nullTestKey, nullTestValue);
 
-        // then
-        // throw an exception
-    }
+    // then
+    // throw an exception
+  }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testPutShouldThrowExceptionWhenKeyAndValueAreEmpty() throws Exception {
-        // given
-        String emptyTestKey = "";
-        String emptyTestValue = "";
+  @Test(expected = IllegalArgumentException.class)
+  public void testPutShouldThrowExceptionWhenKeyAndValueAreEmpty() throws Exception {
+    // given
+    String emptyTestKey = "";
+    String emptyTestValue = "";
 
-        // when
-        Piece.put(emptyTestKey, emptyTestValue);
+    // when
+    Piece.put(emptyTestKey, emptyTestValue);
 
-        // then
-        // throw an exception
-    }
+    // then
+    // throw an exception
+  }
 
-    @Test
-    public void testBold() throws Exception {
-        // given
-        String expectedFormattedValue = String.format(Piece.STRONG_FORMAT, testValue);
+  @Test public void testBold() throws Exception {
+    // given
+    String expectedFormattedValue = String.format(Piece.STRONG_FORMAT, testValue);
 
-        // when
-        Piece piece = Piece.put(testKey, testValue).bold();
+    // when
+    Piece piece = Piece.put(testKey, testValue).bold();
 
-        // then
-        assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
-    }
+    // then
+    assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
+  }
 
-    @Test
-    public void testItalic() throws Exception {
-        // given
-        String expectedFormattedValue = String.format(Piece.ITALIC_FORMAT, testValue);
+  @Test public void testItalic() throws Exception {
+    // given
+    String expectedFormattedValue = String.format(Piece.ITALIC_FORMAT, testValue);
 
-        // when
-        Piece piece = Piece.put(testKey, testValue).italic();
+    // when
+    Piece piece = Piece.put(testKey, testValue).italic();
 
-        // then
-        assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
-    }
+    // then
+    assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
+  }
 
-    @Test
-    public void testUnderline() throws Exception {
-        // given
-        String expectedFormattedValue = String.format(Piece.UNDERLINE_FORMAT, testValue);
+  @Test public void testUnderline() throws Exception {
+    // given
+    String expectedFormattedValue = String.format(Piece.UNDERLINE_FORMAT, testValue);
 
-        // when
-        Piece piece = Piece.put(testKey, testValue).underline();
+    // when
+    Piece piece = Piece.put(testKey, testValue).underline();
 
-        // then
-        assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
-    }
+    // then
+    assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
+  }
 
-    @Test
-    public void testBig() throws Exception {
-        // given
-        String expectedFormattedValue = String.format(Piece.BIG_FORMAT, testValue);
+  @Test public void testBig() throws Exception {
+    // given
+    String expectedFormattedValue = String.format(Piece.BIG_FORMAT, testValue);
 
-        // when
-        Piece piece = Piece.put(testKey, testValue).big();
+    // when
+    Piece piece = Piece.put(testKey, testValue).big();
 
-        // then
-        assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
-    }
+    // then
+    assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
+  }
 
-    @Test
-    public void testSmall() throws Exception {
-        // given
-        String expectedFormattedValue = String.format(Piece.SMALL_FORMAT, testValue);
+  @Test public void testSmall() throws Exception {
+    // given
+    String expectedFormattedValue = String.format(Piece.SMALL_FORMAT, testValue);
 
-        // when
-        Piece piece = Piece.put(testKey, testValue).small();
+    // when
+    Piece piece = Piece.put(testKey, testValue).small();
 
-        // then
-        assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
-    }
+    // then
+    assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
+  }
 
-    @Test
-    public void testSub() throws Exception {
-        // given
-        String expectedFormattedValue = String.format(Piece.SUB_FORMAT, testValue);
+  @Test public void testSub() throws Exception {
+    // given
+    String expectedFormattedValue = String.format(Piece.SUB_FORMAT, testValue);
 
-        // when
-        Piece piece = Piece.put(testKey, testValue).sub();
+    // when
+    Piece piece = Piece.put(testKey, testValue).sub();
 
-        // then
-        assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
-    }
+    // then
+    assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
+  }
 
-    @Test
-    public void testSup() throws Exception {
-        // given
-        String expectedFormattedValue = String.format(Piece.SUP_FORMAT, testValue);
+  @Test public void testSup() throws Exception {
+    // given
+    String expectedFormattedValue = String.format(Piece.SUP_FORMAT, testValue);
 
-        // when
-        Piece piece = Piece.put(testKey, testValue).sup();
+    // when
+    Piece piece = Piece.put(testKey, testValue).sup();
 
-        // then
-        assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
-    }
+    // then
+    assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
+  }
 
-    @Test
-    public void testColor() throws Exception {
-        // given
-        String testColorHexValue = "#FF0000";
-        String expectedFormattedValue = String.format(Piece.COLOR_FORMAT, testColorHexValue, testValue);
+  @Test public void testColor() throws Exception {
+    // given
+    String testColorHexValue = "#FF0000";
+    String expectedFormattedValue = String.format(Piece.COLOR_FORMAT, testColorHexValue, testValue);
 
-        // when
-        Piece piece = Piece.put(testKey, testValue).color(testColorHexValue);
+    // when
+    Piece piece = Piece.put(testKey, testValue).color(testColorHexValue);
 
-        // then
-        assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
-    }
+    // then
+    assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
+  }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testColorShouldThrowExceptionWhenHexIsNull() throws Exception {
-        // given
-        String nullTestColorHexValue = null;
+  @Test(expected = IllegalArgumentException.class)
+  public void testColorShouldThrowExceptionWhenHexIsNull() throws Exception {
+    // given
+    String nullTestColorHexValue = null;
 
-        // when
-        Piece.put(testKey, testValue).color(nullTestColorHexValue);
+    // when
+    Piece.put(testKey, testValue).color(nullTestColorHexValue);
 
-        // then
-        // throw an exception
-    }
+    // then
+    // throw an exception
+  }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testColorShouldThrowExceptionWhenHexIsEmpty() throws Exception {
-        // given
-        String emptyTestColorHexValue = "";
+  @Test(expected = IllegalArgumentException.class)
+  public void testColorShouldThrowExceptionWhenHexIsEmpty() throws Exception {
+    // given
+    String emptyTestColorHexValue = "";
 
-        // when
-        Piece.put(testKey, testValue).color(emptyTestColorHexValue);
+    // when
+    Piece.put(testKey, testValue).color(emptyTestColorHexValue);
 
-        // then
-        // throw an exception
-    }
+    // then
+    // throw an exception
+  }
 
-    @Test
-    public void testColorHexShouldContainSevenCharacters() throws Exception {
-        // given
-        String correctTestColorHexValue = "#FFFFFF";
+  @Test public void testColorHexShouldContainSevenCharacters() throws Exception {
+    // given
+    String correctTestColorHexValue = "#FFFFFF";
 
-        // when
-        Piece piece = Piece.put(testKey, testValue).color(correctTestColorHexValue);
+    // when
+    Piece piece = Piece.put(testKey, testValue).color(correctTestColorHexValue);
 
-        // then
-        // no exception occurs and object is created
-        assertThat(piece).isNotNull();
-    }
+    // then
+    // no exception occurs and object is created
+    assertThat(piece).isNotNull();
+  }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testColorShouldThrowExceptionWhenHexDoesNotContainSevenCharacters() throws Exception {
-        // given
-        String incorrectTestColorHexValue = "#FFFFFFF";
+  @Test(expected = IllegalArgumentException.class)
+  public void testColorShouldThrowExceptionWhenHexDoesNotContainSevenCharacters() throws Exception {
+    // given
+    String incorrectTestColorHexValue = "#FFFFFFF";
 
-        // when
-        Piece.put(testKey, testValue).color(incorrectTestColorHexValue);
+    // when
+    Piece.put(testKey, testValue).color(incorrectTestColorHexValue);
 
-        // then
-        // throw an exception
-    }
+    // then
+    // throw an exception
+  }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testColorShouldThrowExceptionWhenHexDoesNotStartFromHash() throws Exception {
-        // given
-        String incorrectTestColorHexValue = "F#FFFFF";
+  @Test(expected = IllegalArgumentException.class)
+  public void testColorShouldThrowExceptionWhenHexDoesNotStartFromHash() throws Exception {
+    // given
+    String incorrectTestColorHexValue = "F#FFFFF";
 
-        // when
-        Piece.put(testKey, testValue).color(incorrectTestColorHexValue);
+    // when
+    Piece.put(testKey, testValue).color(incorrectTestColorHexValue);
 
-        // then
-        // throw an exception
-    }
+    // then
+    // throw an exception
+  }
 
-    @Test
-    public void testAllFormats() {
-        /**
-         * I realize that setting big and small at the same time doesn't make sense
-         * as well as setting sub and sup at the same time.
-         * This is done just for testing purposes in order to check
-         * correctness of the formatting with all possible methods.
-         */
+  @Test public void testAllFormats() {
+    /**
+     * I realize that setting big and small at the same time doesn't make sense
+     * as well as setting sub and sup at the same time.
+     * This is done just for testing purposes in order to check
+     * correctness of the formatting with all possible methods.
+     */
 
-        // given
-        String expectedFormattedValue;
-        String testColorHexValue = "#FF0000";
-        expectedFormattedValue = String.format(Piece.STRONG_FORMAT, testValue);
-        expectedFormattedValue = String.format(Piece.ITALIC_FORMAT, expectedFormattedValue);
-        expectedFormattedValue = String.format(Piece.UNDERLINE_FORMAT, expectedFormattedValue);
-        expectedFormattedValue = String.format(Piece.BIG_FORMAT, expectedFormattedValue);
-        expectedFormattedValue = String.format(Piece.SMALL_FORMAT, expectedFormattedValue);
-        expectedFormattedValue = String.format(Piece.SUB_FORMAT, expectedFormattedValue);
-        expectedFormattedValue = String.format(Piece.SUP_FORMAT, expectedFormattedValue);
-        expectedFormattedValue = String.format(Piece.COLOR_FORMAT, testColorHexValue, expectedFormattedValue);
+    // given
+    String expectedFormattedValue;
+    String testColorHexValue = "#FF0000";
+    expectedFormattedValue = String.format(Piece.STRONG_FORMAT, testValue);
+    expectedFormattedValue = String.format(Piece.ITALIC_FORMAT, expectedFormattedValue);
+    expectedFormattedValue = String.format(Piece.UNDERLINE_FORMAT, expectedFormattedValue);
+    expectedFormattedValue = String.format(Piece.BIG_FORMAT, expectedFormattedValue);
+    expectedFormattedValue = String.format(Piece.SMALL_FORMAT, expectedFormattedValue);
+    expectedFormattedValue = String.format(Piece.SUB_FORMAT, expectedFormattedValue);
+    expectedFormattedValue = String.format(Piece.SUP_FORMAT, expectedFormattedValue);
+    expectedFormattedValue =
+        String.format(Piece.COLOR_FORMAT, testColorHexValue, expectedFormattedValue);
 
-        // when
-        Piece piece = Piece
-                .put(testKey, testValue)
-                .bold()
-                .italic()
-                .underline()
-                .big()
-                .small()
-                .sub()
-                .sup()
-                .color(testColorHexValue);
+    // when
+    Piece piece = Piece.put(testKey, testValue)
+        .bold()
+        .italic()
+        .underline()
+        .big()
+        .small()
+        .sub()
+        .sup()
+        .color(testColorHexValue);
 
-        // then
-        assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
-    }
+    // then
+    assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
+  }
 }

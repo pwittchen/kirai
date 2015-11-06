@@ -51,128 +51,132 @@ import java.util.regex.Pattern;
  * </ul>
  */
 public final class Kirai {
-    private final static char BRACE_START = '{';
-    private final static char BRACE_END = '}';
-    private final static String REGEX_VALID_TAG = "[a-z]{1}[a-z0-9_]*";
-    private final static Pattern REGEX_TAG = Pattern.compile("\\" + BRACE_START + "(.+?)\\" + BRACE_END);
-    private static String input;
-    private List<String> tags;
-    private List<Piece> pieces = new ArrayList<>();
-    private Formatter formatter = new Formatter() {
-        @Override
-        public CharSequence format(String input) {
-            return Html.fromHtml(input);
-        }
-    };
+  private final static char BRACE_START = '{';
+  private final static char BRACE_END = '}';
+  private final static String REGEX_VALID_TAG = "[a-z]{1}[a-z0-9_]*";
+  private final static Pattern REGEX_TAG =
+      Pattern.compile("\\" + BRACE_START + "(.+?)\\" + BRACE_END);
+  private static String input;
+  private List<String> tags;
+  private List<Piece> pieces = new ArrayList<>();
+  private Formatter formatter = new Formatter() {
+    @Override public CharSequence format(String input) {
+      return Html.fromHtml(input);
+    }
+  };
 
-    private Kirai(String string) {
-        input = string;
+  private Kirai(String string) {
+    input = string;
 
-        if (Utils.isEmpty(string)) {
-            throw new IllegalArgumentException("Input string cannot be null or empty");
-        }
-
-        if (!isInputBalanced()) {
-            throw new IllegalArgumentException("Braces in provided string are not balanced");
-        }
-
-        if (!areTagsValid()) {
-            throw new IllegalArgumentException("Tags have to start from lower case letter and can contain only lower case letters [a-z] numbers [0-9] and underscore [_]");
-        }
+    if (Utils.isEmpty(string)) {
+      throw new IllegalArgumentException("Input string cannot be null or empty");
     }
 
-    public static Kirai from(String string) {
-        return new Kirai(string);
+    if (!isInputBalanced()) {
+      throw new IllegalArgumentException("Braces in provided string are not balanced");
     }
 
-    public Kirai put(String key, Object value) {
-        if (Utils.isEmpty(key) || Utils.isEmpty(String.valueOf(value))) {
-            throw new IllegalArgumentException("Key and value cannot be null or empty");
-        }
+    if (!areTagsValid()) {
+      throw new IllegalArgumentException(
+          "Tags have to start from lower case letter and can contain "
+              + "only lower case letters [a-z] numbers [0-9] and underscore [_]");
+    }
+  }
 
-        if (!tags.contains(key)) {
-            throw new IllegalArgumentException("Tag {" + key + "} was not defined in input string");
-        }
+  public static Kirai from(String string) {
+    return new Kirai(string);
+  }
 
-        input = input.replace(BRACE_START + key + BRACE_END, String.valueOf(value));
-        return this;
+  public Kirai put(String key, Object value) {
+    if (Utils.isEmpty(key) || Utils.isEmpty(String.valueOf(value))) {
+      throw new IllegalArgumentException("Key and value cannot be null or empty");
     }
 
-    public Kirai put(Piece piece) {
-        if (piece == null) {
-            throw new IllegalArgumentException("Piece object cannot be null");
-        }
-
-        if (!tags.contains(piece.getKey())) {
-            throw new IllegalArgumentException("Tag {" + piece.getKey() + "} was not defined in input string");
-        }
-
-        pieces.add(piece);
-        return this;
+    if (!tags.contains(key)) {
+      throw new IllegalArgumentException("Tag {" + key + "} was not defined in input string");
     }
 
-    public CharSequence format() {
-        if (pieces.isEmpty()) {
-            return input;
-        }
+    input = input.replace(BRACE_START + key + BRACE_END, String.valueOf(value));
+    return this;
+  }
 
-        for (Piece piece : pieces) {
-            input = input.replace(BRACE_START + piece.getKey() + BRACE_END, String.valueOf(piece.getValue()));
-        }
-
-        return formatter.format(input);
+  public Kirai put(Piece piece) {
+    if (piece == null) {
+      throw new IllegalArgumentException("Piece object cannot be null");
     }
 
-    /**
-     * Sets custom string formatter. It's created for Unit Tests.
-     * Default formatter uses HTML tags for formatting.
-     * Please be careful with this method and use it only when necessary!
-     *
-     * @param formatter implementation of formatter interface
-     * @return Kirai object
-     */
-    public Kirai formatter(Formatter formatter) {
-        this.formatter = formatter;
-        return this;
+    if (!tags.contains(piece.getKey())) {
+      throw new IllegalArgumentException(
+          "Tag {" + piece.getKey() + "} was not defined in input string");
     }
 
-    /**
-     * Checks whether input string is balanced
-     * Analyzes only curly braces like { and }
-     * and ignores other characters
-     *
-     * @return true if string is balanced
-     */
-    private boolean isInputBalanced() {
-        Stack<Character> stack = new Stack<>();
-        int length = input.length();
-        for (int i = 0; i < length; i++) {
-            char currentChar = input.charAt(i);
-            if (currentChar == BRACE_START) {
-                stack.push(currentChar);
-            } else if (currentChar == BRACE_END) {
-                if (stack.empty()) return false;
-                if (stack.pop() != BRACE_START) return false;
-            }
-        }
-        return stack.empty();
+    pieces.add(piece);
+    return this;
+  }
+
+  public CharSequence format() {
+    if (pieces.isEmpty()) {
+      return input;
     }
 
-    private boolean areTagsValid() {
-        tags = getTags(input);
-        for (String tag : tags) {
-            if (tag.matches(REGEX_VALID_TAG)) continue;
-            return false;
-        }
-        return true;
+    for (Piece piece : pieces) {
+      input =
+          input.replace(BRACE_START + piece.getKey() + BRACE_END, String.valueOf(piece.getValue()));
     }
 
-    private static List<String> getTags(final String string) {
-        final List<String> tags = new ArrayList<>();
-        final Matcher matcher = REGEX_TAG.matcher(string);
-        while (matcher.find()) {
-            tags.add(matcher.group(1));
-        }
-        return tags;
+    return formatter.format(input);
+  }
+
+  /**
+   * Sets custom string formatter. It's created for Unit Tests.
+   * Default formatter uses HTML tags for formatting.
+   * Please be careful with this method and use it only when necessary!
+   *
+   * @param formatter implementation of formatter interface
+   * @return Kirai object
+   */
+  public Kirai formatter(Formatter formatter) {
+    this.formatter = formatter;
+    return this;
+  }
+
+  /**
+   * Checks whether input string is balanced
+   * Analyzes only curly braces like { and }
+   * and ignores other characters
+   *
+   * @return true if string is balanced
+   */
+  private boolean isInputBalanced() {
+    Stack<Character> stack = new Stack<>();
+    int length = input.length();
+    for (int i = 0; i < length; i++) {
+      char currentChar = input.charAt(i);
+      if (currentChar == BRACE_START) {
+        stack.push(currentChar);
+      } else if (currentChar == BRACE_END) {
+        if (stack.empty()) return false;
+        if (stack.pop() != BRACE_START) return false;
+      }
     }
+    return stack.empty();
+  }
+
+  private boolean areTagsValid() {
+    tags = getTags(input);
+    for (String tag : tags) {
+      if (tag.matches(REGEX_VALID_TAG)) continue;
+      return false;
+    }
+    return true;
+  }
+
+  private static List<String> getTags(final String string) {
+    final List<String> tags = new ArrayList<>();
+    final Matcher matcher = REGEX_TAG.matcher(string);
+    while (matcher.find()) {
+      tags.add(matcher.group(1));
+    }
+    return tags;
+  }
 }
