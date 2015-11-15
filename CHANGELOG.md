@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+v. 1.2.0
+--------
+*15 Nov 2015*
+
+- changed library type from `aar` (Android packaging) to `jar` (pure Java packaging)
+
 v. 1.1.0
 --------
 *06 Nov 2015*
