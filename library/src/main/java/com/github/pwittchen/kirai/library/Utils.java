@@ -19,6 +19,8 @@ public final class Utils {
   /**
    * This method is copied from TextUtils class in Android SDK It was done in order to get rid of
    * dependency to TextUtils class to run Unit Tests from Android Studio
+   * @param str input string
+   * @return boolean indicates if string is empty or not
    */
   public static boolean isEmpty(CharSequence str) {
     if (str == null || str.length() == 0) {
@@ -28,6 +30,11 @@ public final class Utils {
     }
   }
 
+  /**
+   * Throws an exception with a message, when object is null
+   * @param object to examine
+   * @param message for IllegalArgumentException
+   */
   public static void checkNotNull(Object object, String message) {
     if (object == null) {
       throw new IllegalArgumentException(message);

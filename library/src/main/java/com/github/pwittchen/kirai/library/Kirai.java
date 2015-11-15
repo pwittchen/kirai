@@ -36,7 +36,6 @@ import java.util.regex.Pattern;
  *     .put(Piece.put("first_name", firstName).bold().italic().big())
  *     .put(Piece.put("age", age).underline().color("#FF0000"))
  *     .format(new Formatter() {
- *       @Override
  *       public CharSequence format(String input) {
  *         return Html.fromHtml(input);
  *        }
