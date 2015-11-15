@@ -1,33 +1,21 @@
-apply plugin: 'com.android.library'
+apply plugin: 'java'
+apply plugin: 'idea'
 
-android {
-  compileSdkVersion 23
-  buildToolsVersion "23.0.1"
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
-  defaultConfig {
-    minSdkVersion 14
-    targetSdkVersion 23
-    versionCode 1
-    versionName "1.0"
-  }
-
-  buildTypes {
-    release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-    }
-  }
+repositories {
+    mavenCentral()
+    jcenter()
 }
 
 dependencies {
-  testCompile 'junit:junit:4.12'
-  testCompile('com.google.truth:truth:0.25') {
-    exclude group: 'junit' // Android has JUnit built in
-  }
+    testCompile 'junit:junit:4.12'
+    testCompile 'com.google.truth:truth:0.25'
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '2.2.1'
+    gradleVersion = '2.2.1'
 }
 
 apply from: '../maven_push.gradle'
