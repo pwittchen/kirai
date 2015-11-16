@@ -23,7 +23,7 @@ import org.junit.runners.JUnit4;
 import static com.google.common.truth.Truth.assertThat;
 
 @RunWith(JUnit4.class)
-public class PieceTest {
+public class HtmlPieceTest {
 
   private String testKey;
   private String testValue;
@@ -42,7 +42,7 @@ public class PieceTest {
     // data in setUp() method
 
     // when
-    Piece piece = Piece.put(testKey, testValue);
+    Piece piece = HtmlPiece.put(testKey, testValue);
 
     // then
     assertThat(piece.getKey()).isEqualTo(testKey);
@@ -56,7 +56,7 @@ public class PieceTest {
     String nullTestValue = null;
 
     // when
-    Piece.put(nullTestKey, nullTestValue);
+    HtmlPiece.put(nullTestKey, nullTestValue);
 
     // then
     // throw an exception
@@ -69,7 +69,7 @@ public class PieceTest {
     String emptyTestValue = "";
 
     // when
-    Piece.put(emptyTestKey, emptyTestValue);
+    HtmlPiece.put(emptyTestKey, emptyTestValue);
 
     // then
     // throw an exception
@@ -81,7 +81,7 @@ public class PieceTest {
     String expectedFormattedValue = String.format(htmlSyntax.getBoldFormat(), testValue);
 
     // when
-    Piece piece = Piece.put(testKey, testValue).bold();
+    Piece piece = HtmlPiece.put(testKey, testValue).bold();
 
     // then
     assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
@@ -93,7 +93,7 @@ public class PieceTest {
     String expectedFormattedValue = String.format(htmlSyntax.getItalicFormat(), testValue);
 
     // when
-    Piece piece = Piece.put(testKey, testValue).italic();
+    Piece piece = HtmlPiece.put(testKey, testValue).italic();
 
     // then
     assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
@@ -105,7 +105,7 @@ public class PieceTest {
     String expectedFormattedValue = String.format(htmlSyntax.getUnderlineFormat(), testValue);
 
     // when
-    Piece piece = Piece.put(testKey, testValue).underline();
+    Piece piece = HtmlPiece.put(testKey, testValue).underline();
 
     // then
     assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
@@ -117,7 +117,7 @@ public class PieceTest {
     String expectedFormattedValue = String.format(htmlSyntax.getBigFormat(), testValue);
 
     // when
-    Piece piece = Piece.put(testKey, testValue).big();
+    Piece piece = HtmlPiece.put(testKey, testValue).big();
 
     // then
     assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
@@ -129,7 +129,7 @@ public class PieceTest {
     String expectedFormattedValue = String.format(htmlSyntax.getSmallFormat(), testValue);
 
     // when
-    Piece piece = Piece.put(testKey, testValue).small();
+    Piece piece = HtmlPiece.put(testKey, testValue).small();
 
     // then
     assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
@@ -141,7 +141,7 @@ public class PieceTest {
     String expectedFormattedValue = String.format(htmlSyntax.getSubFormat(), testValue);
 
     // when
-    Piece piece = Piece.put(testKey, testValue).sub();
+    Piece piece = HtmlPiece.put(testKey, testValue).sub();
 
     // then
     assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
@@ -153,7 +153,7 @@ public class PieceTest {
     String expectedFormattedValue = String.format(htmlSyntax.getSupFormat(), testValue);
 
     // when
-    Piece piece = Piece.put(testKey, testValue).sup();
+    Piece piece = HtmlPiece.put(testKey, testValue).sup();
 
     // then
     assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
@@ -166,7 +166,7 @@ public class PieceTest {
     String expectedFormattedValue = String.format(htmlSyntax.getColorFormat(), testColorHexValue, testValue);
 
     // when
-    Piece piece = Piece.put(testKey, testValue).color(testColorHexValue);
+    Piece piece = HtmlPiece.put(testKey, testValue).color(testColorHexValue);
 
     // then
     assertThat(piece.getValue()).isEqualTo(expectedFormattedValue);
@@ -178,7 +178,7 @@ public class PieceTest {
     String nullTestColorHexValue = null;
 
     // when
-    Piece.put(testKey, testValue).color(nullTestColorHexValue);
+    HtmlPiece.put(testKey, testValue).color(nullTestColorHexValue);
 
     // then
     // throw an exception
@@ -190,7 +190,7 @@ public class PieceTest {
     String emptyTestColorHexValue = "";
 
     // when
-    Piece.put(testKey, testValue).color(emptyTestColorHexValue);
+    HtmlPiece.put(testKey, testValue).color(emptyTestColorHexValue);
 
     // then
     // throw an exception
@@ -202,7 +202,7 @@ public class PieceTest {
     String correctTestColorHexValue = "#FFFFFF";
 
     // when
-    Piece piece = Piece.put(testKey, testValue).color(correctTestColorHexValue);
+    Piece piece = HtmlPiece.put(testKey, testValue).color(correctTestColorHexValue);
 
     // then
     // no exception occurs and object is created
@@ -215,7 +215,7 @@ public class PieceTest {
     String incorrectTestColorHexValue = "#FFFFFFF";
 
     // when
-    Piece.put(testKey, testValue).color(incorrectTestColorHexValue);
+    HtmlPiece.put(testKey, testValue).color(incorrectTestColorHexValue);
 
     // then
     // throw an exception
@@ -227,7 +227,7 @@ public class PieceTest {
     String incorrectTestColorHexValue = "F#FFFFF";
 
     // when
-    Piece.put(testKey, testValue).color(incorrectTestColorHexValue);
+    HtmlPiece.put(testKey, testValue).color(incorrectTestColorHexValue);
 
     // then
     // throw an exception
@@ -256,7 +256,7 @@ public class PieceTest {
         String.format(htmlSyntax.getColorFormat(), testColorHexValue, expectedFormattedValue);
 
     // when
-    Piece piece = Piece.put(testKey, testValue)
+    Piece piece = HtmlPiece.put(testKey, testValue)
         .bold()
         .italic()
         .underline()
