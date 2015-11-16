@@ -23,7 +23,7 @@ CharSequence formatted = Kirai
   .format();
 ```
 
-### Flavored
+### Flavored (with HTML formatting)
 
 ```java
 CharSequence formatted = Kirai
