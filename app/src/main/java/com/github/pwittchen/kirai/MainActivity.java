@@ -20,8 +20,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.widget.TextView;
 import com.github.pwittchen.kirai.library.Formatter;
+import com.github.pwittchen.kirai.library.HtmlPiece;
 import com.github.pwittchen.kirai.library.Kirai;
-import com.github.pwittchen.kirai.library.Piece;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
     CharSequence formattedTwo = Kirai
         .from("You are {position} from {location}.")
-        .put(Piece.put("position", "Android Developer").bold().italic())
-        .put(Piece.put("location", "Poland").underline().color("#FF0000"))
+        .put(HtmlPiece.put("position", "Android Developer").bold().italic())
+        .put(HtmlPiece.put("location", "Poland").underline().color("#FF0000"))
         .format(new Formatter() {
           @Override
           public CharSequence format(String input) {

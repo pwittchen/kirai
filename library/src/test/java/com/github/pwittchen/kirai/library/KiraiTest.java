@@ -142,7 +142,7 @@ import static com.google.common.truth.Truth.assertThat;
     // given
     String testValue = "test value";
     String notPresentTestTag = "test_tag_NOT_present";
-    Piece testPiece = Piece.put(notPresentTestTag, testValue);
+    Piece testPiece = HtmlPiece.put(notPresentTestTag, testValue);
     String testTagOne = "tag_one";
     String testInputString = "Sample text {" + testTagOne + "} rest of the sentence.";
 
@@ -175,7 +175,7 @@ import static com.google.common.truth.Truth.assertThat;
 
     // when
     CharSequence generatedCharSequence = Kirai.from(testInputString)
-        .put(Piece.put(testKey, testValue))
+        .put(HtmlPiece.put(testKey, testValue))
         .format();
 
     // then

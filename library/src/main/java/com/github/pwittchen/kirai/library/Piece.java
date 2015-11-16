@@ -15,32 +15,36 @@
  */
 package com.github.pwittchen.kirai.library;
 
-public final class Piece {
-  private Syntax syntax;
-  private String key;
+public abstract class Piece {
+  private final Syntax syntax;
+  private final String key;
   private Object value;
 
-  private Piece(String key, Object value) {
+//  private Piece(String key, Object value) {
+//    this.key = key;
+//    this.value = value;
+//    this.syntax = new HtmlSyntax();
+//  }
+
+  public Piece(String key, Object value, Syntax syntax) {
+//    new Piece(key, value);
+    validatePair(key, value);
+    Utils.checkNotNull(syntax, "syntax == null");
     this.key = key;
     this.value = value;
-    this.syntax = new HtmlSyntax();
-  }
-
-  private Piece(String key, Object value, Syntax syntax) {
-    new Piece(key, value);
     this.syntax = syntax;
   }
 
-  public static Piece put(String key, Object value) {
-    validatePair(key, value);
-    return new Piece(key, value);
-  }
+//  public static Piece put(String key, Object value) {
+//    validatePair(key, value);
+//    return new Piece(key, value);
+//  }
 
-  public static Piece put(String key, Object value, Syntax syntax) {
-    validatePair(key, value);
-    Utils.checkNotNull(syntax, "syntax == null");
-    return new Piece(key, value, syntax);
-  }
+//  public static Piece put(String key, Object value, Syntax syntax) {
+//    validatePair(key, value);
+//    Utils.checkNotNull(syntax, "syntax == null");
+//    return new Piece(key, value, syntax);
+//  }
 
   private static void validatePair(String key, Object value) {
     if (Utils.isEmpty(key) || Utils.isEmpty(String.valueOf(value))) {
