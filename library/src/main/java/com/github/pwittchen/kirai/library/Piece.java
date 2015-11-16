@@ -20,31 +20,13 @@ public abstract class Piece {
   private final String key;
   private Object value;
 
-//  private Piece(String key, Object value) {
-//    this.key = key;
-//    this.value = value;
-//    this.syntax = new HtmlSyntax();
-//  }
-
   public Piece(String key, Object value, Syntax syntax) {
-//    new Piece(key, value);
     validatePair(key, value);
     Utils.checkNotNull(syntax, "syntax == null");
     this.key = key;
     this.value = value;
     this.syntax = syntax;
   }
-
-//  public static Piece put(String key, Object value) {
-//    validatePair(key, value);
-//    return new Piece(key, value);
-//  }
-
-//  public static Piece put(String key, Object value, Syntax syntax) {
-//    validatePair(key, value);
-//    Utils.checkNotNull(syntax, "syntax == null");
-//    return new Piece(key, value, syntax);
-//  }
 
   private static void validatePair(String key, Object value) {
     if (Utils.isEmpty(key) || Utils.isEmpty(String.valueOf(value))) {
