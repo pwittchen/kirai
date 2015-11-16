@@ -37,7 +37,7 @@ CharSequence formatted = Kirai
   }
 ```
 
-### In Android TextView
+#### In Android TextView
 
 ```java
 textView.setText(formatted);
