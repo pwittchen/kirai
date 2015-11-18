@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+v. 1.3.0
+--------
+*18 Nov 2015*
+
+- `Piece` is now an abstract class
+- created `HtmlPiece` extending Piece `class`, which uses `HtmlSyntax` class
+- updated documentation and tests
+
 v. 1.2.0
 --------
 *15 Nov 2015*
