@@ -16,9 +16,9 @@
 package com.github.pwittchen.kirai.library;
 
 public abstract class Piece {
-  private final Syntax syntax;
-  private final String key;
-  private Object value;
+  protected final Syntax syntax;
+  protected final String key;
+  protected Object value;
 
   public Piece(String key, Object value, Syntax syntax) {
     validatePair(key, value);
