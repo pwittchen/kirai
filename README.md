@@ -52,7 +52,7 @@ You can depend on the library through Maven:
 <dependency>
     <groupId>com.github.pwittchen.kirai</groupId>
     <artifactId>library</artifactId>
-    <version>1.3.0</version>
+    <version>1.3.1</version>
 </dependency>
 ```
 
@@ -60,7 +60,7 @@ or through Gradle:
 
 ```groovy
 dependencies {
-  compile 'com.github.pwittchen.kirai:library:1.3.0'
+  compile 'com.github.pwittchen.kirai:library:1.3.1'
 }
 ```
 
