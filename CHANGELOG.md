@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+v. 1.3.1
+--------
+*21 Nov 2015*
+
+Changed `syntax`, `key` and `value` fields from `private` to `protected` in `Piece` class.
+
 v. 1.3.0
 --------
 *18 Nov 2015*
