@@ -6,7 +6,7 @@ v. 1.4.0
 *22 Nov 2015*
 
 - added support for formatting text in Unix terminal (bold, underline, color and background color)
-- created separate packages for classes responsible for html formatting and terminal formatting
+- created separate packages for classes responsible for HTML formatting and terminal formatting
 - added `TerminalColor` and `TerminalBgColor` enums with predefined terminal color codes
 - updated README.md and prepared more code samples
 - added test coverage with codecov.io
