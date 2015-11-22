@@ -12,5 +12,8 @@ install:
   # If you'd like to skip the install stage entirely, set it to true and nothing will be run.
   - true
 
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
 script:
-  - ./gradlew clean build test
+  - ./gradlew clean build check test
