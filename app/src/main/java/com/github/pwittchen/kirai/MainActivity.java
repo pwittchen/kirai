@@ -20,7 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.widget.TextView;
 import com.github.pwittchen.kirai.library.Formatter;
-import com.github.pwittchen.kirai.library.HtmlPiece;
+import com.github.pwittchen.kirai.library.html.HtmlPiece;
 import com.github.pwittchen.kirai.library.Kirai;
 
 public class MainActivity extends AppCompatActivity {
