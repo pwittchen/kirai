@@ -15,6 +15,8 @@
  */
 package com.github.pwittchen.kirai.library;
 
+import com.github.pwittchen.kirai.library.html.HtmlPiece;
+import com.github.pwittchen.kirai.library.html.HtmlSyntax;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

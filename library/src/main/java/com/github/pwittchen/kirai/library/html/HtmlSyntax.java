@@ -13,7 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.pwittchen.kirai.library;
+package com.github.pwittchen.kirai.library.html;
+
+import com.github.pwittchen.kirai.library.Syntax;
+import com.github.pwittchen.kirai.library.Utils;
 
 public final class HtmlSyntax implements Syntax {
   private final static String STRONG_FORMAT = "<strong>%s</strong>";
