@@ -22,15 +22,22 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Kirai ("phrase" in Swahili language) - flavored Android string formatting library A fluent API
- * for formatting Strings. Canonical usage: Basic:
+ * Kirai ("phrase" in Swahili language) - string formatting library. Basic usage:
  * <pre>
  *   CharSequence formatted = Kirai.from("Hi {first_name}, you are {age} years old.")
  *     .put("first_name", firstName)
  *     .put("age", age)
  *     .format();
  * </pre>
- * Flavored:
+ * On the Web:
+ * <pre>
+ *   CharSequence formatted = Kirai.from("Hi {first_name}, you are {age} years old.")
+ *     .put(HtmlPiece.put("first_name", firstName).bold().italic().big())
+ *     .put(HtmlPiece.put("age", age).underline().color("#FF0000"))
+ *     .format(new Formatter() {
+ *     .format();
+ * </pre>
+ * On Android:
  * <pre>
  *   CharSequence formatted = Kirai.from("Hi {first_name}, you are {age} years old.")
  *     .put(HtmlPiece.put("first_name", firstName).bold().italic().big())
@@ -39,7 +46,14 @@ import java.util.regex.Pattern;
  *       public CharSequence format(String input) {
  *         return Html.fromHtml(input);
  *        }
- *      }
+ *      });
+ * </pre>
+ * In Unix terminal:
+ * <pre>
+ *   CharSequence formatted = Kirai.from("Hi {first_name}, you are {age} years old.")
+ *     .put(TerminalPiece.put("first_name", firstName).bold())
+ *     .put(TerminalPiece.put("age", age).underline().color(TerminalColor.RED))
+ *     .format();
  * </pre>
  * <ul> <li>Surround keys with curly braces</li> <li>Keys start with lowercase letters followed by
  * lowercase letters and underscores.</li> <li>Can be formatted for TextView (bold, italic,
