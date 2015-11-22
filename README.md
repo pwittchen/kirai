@@ -1,7 +1,7 @@
 Kirai
 =====
 
-[![Build Status](https://travis-ci.org/pwittchen/kirai.svg?branch=master)](https://travis-ci.org/pwittchen/kirai)  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Kirai-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1391) ![Maven Central](https://img.shields.io/maven-central/v/com.github.pwittchen.kirai/library.svg?style=flat)
+[![Build Status](https://travis-ci.org/pwittchen/kirai.svg?branch=master)](https://travis-ci.org/pwittchen/kirai)  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Kirai-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1391) ![Maven Central](https://img.shields.io/maven-central/v/com.github.pwittchen.kirai/library.svg?style=flat) [![codecov.io](https://codecov.io/github/pwittchen/kirai/coverage.svg?branch=master)](https://codecov.io/github/pwittchen/kirai?branch=master)
 
 Kirai means *phrase* in Swahili language. It's string formatting library for Java, Android, Web and Unix Terminal.
 
