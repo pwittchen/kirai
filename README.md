@@ -83,6 +83,8 @@ Code above will generate formatted text ready to display in **Unix terminal** as
 System.out.println(formatted);
 ```
 
+instead of `TerminalColor` and `TerminalBgColor` enums we can pass color code as a string to `color(string)` method and it will work as well. We can use it for setting foreground and background color. For the reference of color codes take a look at http://misc.flogisoft.com/bash/tip_colors_and_formatting website.
+
 Download
 --------
 
