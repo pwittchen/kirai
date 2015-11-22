@@ -1,14 +1,26 @@
-Kirai - flavored string formatting
-===================================
+Kirai
+=====
 
 [![Build Status](https://travis-ci.org/pwittchen/kirai.svg?branch=master)](https://travis-ci.org/pwittchen/kirai)  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Kirai-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1391) ![Maven Central](https://img.shields.io/maven-central/v/com.github.pwittchen.kirai/library.svg?style=flat)
 
-Kirai means *phrase* in Swahili language.
+Kirai means *phrase* in Swahili language. It's string formatting library for Android, Web and Unix Terminal.
 
 Project is inspired by [phrase](https://github.com/square/phrase), [TaggerString](https://github.com/polok/TaggerString) and [BabushkaText](https://github.com/quiqueqs/BabushkaText).
 Kirai has fluent API similar to phrase with additional formatting similar to TaggerString and allows to add formatted pieces of text like BabushkaText.
 
 JavaDoc is available at: http://pwittchen.github.io/kirai/
+
+Contents
+--------
+- [Usage](#usage)
+  - [Basic](#basic)
+  - [Android](#android)
+  - [Web](#web)
+  - [Terminal](#terminal)
+- [Download](#download)
+- [Tests](#tests)
+- [Code style](#code-style)
+- [License](#license)
 
 Usage
 -----
@@ -23,7 +35,7 @@ CharSequence formatted = Kirai
   .format();
 ```
 
-### Flavored (with HTML formatting)
+### Android
 
 ```java
 CharSequence formatted = Kirai
@@ -34,14 +46,44 @@ CharSequence formatted = Kirai
     @Override public CharSequence format(String input) {
       return Html.fromHtml(input);
     }
-  }
+  });
 ```
 
-#### In Android TextView
+Code above will generate formatted text and can be used in **Android TextView** as follows:
 
 ```java
 textView.setText(formatted);
 ```
+
+### Web
+
+```java
+CharSequence formatted = Kirai
+  .from("Hi {first_name}, your are {age} years old.")
+  .put(HtmlPiece.put("first_name", firstName).bold().italic().big())
+  .put(HtmlPiece.put("age", age).underline().color("#FF0000"))
+  .format();
+```
+
+Code above will generate text formatted with HTML tags.
+
+### Terminal
+
+```java
+CharSequence formatted = Kirai
+  .from("Hi {first_name}, your are {age} years old.")
+  .put(TerminalPiece.put("first_name", firstName).background(TerminalBgColor.DARK_GRAY).bold())
+  .put(TerminalPiece.put("age", age).color(TerminalColor.CYAN).underline())
+  .format();
+```
+
+Code above will generate formatted text ready to display in **Unix terminal** as follows:
+
+```java
+System.out.println(formatted);
+```
+
+instead of `TerminalColor` and `TerminalBgColor` enums we can pass color code as a string to `color(string)` method and it will work as well. We can use it for setting foreground and background color. For the reference of color codes take a look at http://misc.flogisoft.com/bash/tip_colors_and_formatting website.
 
 Download
 --------
