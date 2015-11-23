@@ -22,9 +22,11 @@ import org.junit.runners.JUnit4;
 
 import static com.google.common.truth.Truth.assertThat;
 
-@RunWith(JUnit4.class) public class KiraiTest {
+@RunWith(JUnit4.class)
+public class KiraiTest {
 
-  @Test public void testKiraiShouldSetAnInputAndNotBeNull() {
+  @Test
+  public void testKiraiShouldSetAnInputAndNotBeNull() {
     // given
     String sampleString = "sample string";
 
@@ -36,7 +38,8 @@ import static com.google.common.truth.Truth.assertThat;
     assertThat(kirai).isNotNull();
   }
 
-  @Test public void testStringShouldBeBalanced() {
+  @Test
+  public void testStringShouldBeBalanced() {
     // given
     String testTagOne = "tag_one";
     String testTagTwo = "tag_two";
@@ -154,7 +157,8 @@ import static com.google.common.truth.Truth.assertThat;
     // throw an exception
   }
 
-  @Test public void testPutShouldAddKeyAndValue() {
+  @Test
+  public void testPutShouldAddKeyAndValue() {
     String testKey = "test_tag_present";
     String testValue = "test value";
     String testInputString = "Sample text {" + testKey + "} rest of the sentence.";
@@ -168,7 +172,8 @@ import static com.google.common.truth.Truth.assertThat;
     assertThat(generatedCharSequence).isEqualTo(expectedOutPutString);
   }
 
-  @Test public void testPutShouldAddPiece() {
+  @Test
+  public void testPutShouldAddPiece() {
     String testKey = "test_tag_present";
     String testValue = "test value";
     String testInputString = "Sample text {" + testKey + "} rest of the sentence.";
@@ -250,7 +255,8 @@ import static com.google.common.truth.Truth.assertThat;
     // throw an exception
   }
 
-  @Test public void testIsEmptyShouldReturnTrueForEmptyString() {
+  @Test
+  public void testIsEmptyShouldReturnTrueForEmptyString() {
     // given
     String emptyString = "";
 
@@ -261,7 +267,8 @@ import static com.google.common.truth.Truth.assertThat;
     assertThat(isEmpty).isTrue();
   }
 
-  @Test public void testIsEmptyShouldReturnTrueForNull() {
+  @Test
+  public void testIsEmptyShouldReturnTrueForNull() {
     // given
     String nullString = null;
 
@@ -272,7 +279,8 @@ import static com.google.common.truth.Truth.assertThat;
     assertThat(isEmpty).isTrue();
   }
 
-  @Test public void testIsEmptyShouldReturnFalseForNotEmptyString() {
+  @Test
+  public void testIsEmptyShouldReturnFalseForNotEmptyString() {
     // given
     String notEmptyString = "string, which is not empty";
 
