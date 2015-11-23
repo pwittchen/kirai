@@ -65,7 +65,7 @@ CharSequence formatted = Kirai
   .format();
 ```
 
-Code above will generate text formatted with HTML tags.
+Code above will generate text formatted with **HTML tags**.
 
 ### Terminal
 
