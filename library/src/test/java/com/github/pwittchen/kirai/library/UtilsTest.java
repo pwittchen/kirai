@@ -25,6 +25,12 @@ import static com.google.common.truth.Truth.assertThat;
 public class UtilsTest {
 
   @Test
+  public void testShouldInitializeUtils() {
+    Utils utils = new Utils();
+    assertThat(utils).isNotNull();
+  }
+
+  @Test
   public void testStringShouldBeEmpty() {
     // given
     String emptyString = "";

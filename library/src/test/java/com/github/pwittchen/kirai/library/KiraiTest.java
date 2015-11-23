@@ -159,6 +159,7 @@ public class KiraiTest {
 
   @Test
   public void testPutShouldAddKeyAndValue() {
+    // given
     String testKey = "test_tag_present";
     String testValue = "test value";
     String testInputString = "Sample text {" + testKey + "} rest of the sentence.";
@@ -174,6 +175,7 @@ public class KiraiTest {
 
   @Test
   public void testPutShouldAddPiece() {
+    // given
     String testKey = "test_tag_present";
     String testValue = "test value";
     String testInputString = "Sample text {" + testKey + "} rest of the sentence.";
@@ -199,12 +201,61 @@ public class KiraiTest {
     // when
     Kirai.from(testInputString).put(notPresentTestTag, testValue);
 
-    // then
-    // throw an exception
+    // then throw an exception
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testPutShouldThrowExceptionWhenKeyStartsFromNumber() {
+  public void testPutShouldThrowAnExceptionWhenKeyIsAnEmptyString() {
+    // given
+    String testKey = "";
+    String testValue = "test value";
+    String testInputString = "Sample text {" + testKey + "} rest of the sentence.";
+
+    // when
+    Kirai.from(testInputString).put(testKey, testValue).format();
+
+    // then throw an exception
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testPutShouldThrowAnExceptionWhenKeyIsNull() {
+    // given
+    String testKey = null;
+    String testValue = "test value";
+    String testInputString = "Sample text {" + testKey + "} rest of the sentence.";
+
+    // when
+    Kirai.from(testInputString).put(testKey, testValue).format();
+
+    // then throw an exception
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testPutShouldThrowAnExceptionWhenValueIsAnEmptyString() {
+    String testKey = "testKey";
+    String testValue = "";
+    String testInputString = "Sample text {" + testKey + "} rest of the sentence.";
+
+    // when
+    Kirai.from(testInputString).put(testKey, testValue).format();
+
+    // then throw an exception
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testPutShouldThrowAnExceptionWhenValueIsNull() {
+    String testKey = "testKey";
+    String testValue = null;
+    String testInputString = "Sample text {" + testKey + "} rest of the sentence.";
+
+    // when
+    Kirai.from(testInputString).put(testKey, testValue).format();
+
+    // then throw an exception
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testFromShouldThrowExceptionWhenKeyStartsFromNumber() {
     // given
     String incorrectTestTag = "1_incorrect_tag";
     String testInputString = "Sample text {" + incorrectTestTag + "} rest of the sentence.";
@@ -217,7 +268,7 @@ public class KiraiTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testPutShouldThrowExceptionWhenKeyStartsFromUnderscore() {
+  public void testFromShouldThrowExceptionWhenKeyStartsFromUnderscore() {
     // given
     String incorrectTestTag = "_incorrect_tag";
     String testInputString = "Sample text {" + incorrectTestTag + "} rest of the sentence.";
@@ -230,7 +281,7 @@ public class KiraiTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testPutShouldThrowExceptionWhenKeyStartsFromSpecialCharacter() {
+  public void testFromShouldThrowExceptionWhenKeyStartsFromSpecialCharacter() {
     // given
     String incorrectTestTag = "!_incorrect_tag";
     String testInputString = "Sample text {" + incorrectTestTag + "} rest of the sentence.";
@@ -243,7 +294,7 @@ public class KiraiTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testPutShouldThrowExceptionWhenKeyContainsSpecialCharacters() {
+  public void testFromShouldThrowExceptionWhenKeyContainsSpecialCharacters() {
     // given
     String incorrectTestTag = "#!@ tag &^*_";
     String testInputString = "Sample text {" + incorrectTestTag + "} rest of the sentence.";
@@ -289,5 +340,26 @@ public class KiraiTest {
 
     // then
     assertThat(isEmpty).isFalse();
+  }
+
+  @Test
+  public void testFormatterShouldFormatInput() {
+    // given
+    // formatter below is created for test purposes and it can do anything
+    Formatter upperCaseTestFormatter = new Formatter() {
+      @Override
+      public CharSequence format(String input) {
+        return input.toString().toUpperCase();
+      }
+    };
+
+    String input = "value";
+    String expectedOutput = "VALUE";
+
+    // when
+    CharSequence output = Kirai.from(input).format(upperCaseTestFormatter);
+
+    // then
+    assertThat(output).isEqualTo(expectedOutput);
   }
 }
