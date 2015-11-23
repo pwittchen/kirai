@@ -65,7 +65,7 @@ CharSequence formatted = Kirai
   .format();
 ```
 
-Code above will generate text formatted with HTML tags.
+Code above will generate text formatted with **HTML tags**.
 
 ### Terminal
 
@@ -94,7 +94,7 @@ You can depend on the library through Maven:
 <dependency>
     <groupId>com.github.pwittchen.kirai</groupId>
     <artifactId>library</artifactId>
-    <version>1.3.1</version>
+    <version>1.4.0</version>
 </dependency>
 ```
 
@@ -102,14 +102,14 @@ or through Gradle:
 
 ```groovy
 dependencies {
-  compile 'com.github.pwittchen.kirai:library:1.3.1'
+  compile 'com.github.pwittchen.kirai:library:1.4.0'
 }
 ```
 
 Tests
 -----
 
-Unit Tests are available in `library/src/test` directory. They don't have any dependencies to Android API and can be run from Android Studio or CLI with Gradle without any emulator or attached device thanks to enabled [Unit Testing Support](http://tools.android.com/tech-docs/unit-testing-support). Tests were written according to TDD methodology. They determine library specification and check if project is fault-tolerant.
+Unit Tests are available in `library/src/test` directory. They don't have any dependencies to Android API and can be run from Android Studio, IntelliJ IDEA or CLI with Gradle directly on JVM without any emulator or attached device thanks to enabled [Unit Testing Support](http://tools.android.com/tech-docs/unit-testing-support). Tests were written according to TDD methodology. They determine library specification and check if project is fault-tolerant.
 
 Code style
 ----------
