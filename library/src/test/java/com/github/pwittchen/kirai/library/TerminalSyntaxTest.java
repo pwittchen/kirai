@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import static com.google.common.truth.Truth.assertThat;
+
 @RunWith(JUnit4.class)
 public class TerminalSyntaxTest {
 
@@ -77,5 +79,41 @@ public class TerminalSyntaxTest {
     syntax.validateColorCode(invalidColorCode);
 
     // then an exception is thrown
+  }
+
+  @Test
+  public void testShouldHaveCorrectBoldFormat() {
+    // given
+    String expectedFormat = "\033[1m%s\033[21m";
+
+    // when
+    String format = syntax.getBoldFormat();
+
+    // then
+    assertThat(format).isEqualTo(expectedFormat);
+  }
+
+  @Test
+  public void testShouldHaveCorrectUnderlineFormat() {
+    // given
+    String expectedFormat = "\033[39;4m%s\033[0m";
+
+    // when
+    String format = syntax.getUnderlineFormat();
+
+    // then
+    assertThat(format).isEqualTo(expectedFormat);
+  }
+
+  @Test
+  public void testShouldHaveCorrectColorFormat() {
+    // given
+    String expectedFormat = "\033[%sm%s\033[0m";
+
+    // when
+    String format = syntax.getColorFormat();
+
+    // then
+    assertThat(format).isEqualTo(expectedFormat);
   }
 }
