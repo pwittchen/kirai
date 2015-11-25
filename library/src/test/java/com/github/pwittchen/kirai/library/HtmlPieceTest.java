@@ -19,12 +19,9 @@ import com.github.pwittchen.kirai.library.html.HtmlPiece;
 import com.github.pwittchen.kirai.library.html.HtmlSyntax;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 
 import static com.google.common.truth.Truth.assertThat;
 
-@RunWith(JUnit4.class)
 public class HtmlPieceTest {
 
   private String testKey;

@@ -15,6 +15,20 @@ dependencies {
     testCompile 'com.google.truth:truth:0.25'
 }
 
+sourceSets {
+    main {
+        java {
+            srcDirs 'src/main/java'
+        }
+    }
+
+    test {
+        java {
+            srcDir 'src/test/java'
+        }
+    }
+}
+
 jacocoTestReport {
     reports {
         xml.enabled = true
