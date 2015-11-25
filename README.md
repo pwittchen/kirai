@@ -10,6 +10,8 @@ Kirai has fluent API similar to phrase with additional formatting similar to Tag
 
 JavaDoc is available at: http://pwittchen.github.io/kirai/
 
+Library is compatible with Java 1.6 and higher.
+
 Contents
 --------
 - [Usage](#usage)
