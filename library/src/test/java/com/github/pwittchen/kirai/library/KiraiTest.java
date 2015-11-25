@@ -96,6 +96,19 @@ public class KiraiTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
+  public void testShouldThrowExceptionWhenStringHasOneAdditionalEndingBrace() {
+    // given
+    String testTag = "tag_one";
+    String testNotBalancedString = "{" + testTag + "}}";
+
+    // when
+    Kirai.from(testNotBalancedString);
+
+    // then
+    // throw an exception
+  }
+
+  @Test(expected = IllegalArgumentException.class)
   public void testShouldThrowExceptionWhenInputStringIsNull() {
     // given
     String testInputString = null;
