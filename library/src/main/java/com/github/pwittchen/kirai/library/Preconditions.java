@@ -15,23 +15,22 @@
  */
 package com.github.pwittchen.kirai.library;
 
-public final class Utils {
+public final class Preconditions {
   /**
-   * This method is copied from TextUtils class in Android SDK It was done in order to get rid of
-   * dependency to TextUtils class to run Unit Tests from Android Studio
-   * @param str input string
-   * @return boolean indicates if string is empty or not
+   * Throws an exception with a message, when CharSequence is null
+   *
+   * @param str is a CharSequence to examine
+   * @param message for IllegalArgumentException
    */
-  public static boolean isEmpty(CharSequence str) {
+  public static void checkNotEmpty(CharSequence str, String message) {
     if (str == null || str.length() == 0) {
-      return true;
-    } else {
-      return false;
+      throw new IllegalArgumentException(message);
     }
   }
 
   /**
    * Throws an exception with a message, when object is null
+   *
    * @param object to examine
    * @param message for IllegalArgumentException
    */

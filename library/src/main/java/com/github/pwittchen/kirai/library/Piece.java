@@ -22,16 +22,15 @@ public abstract class Piece {
 
   public Piece(String key, Object value, Syntax syntax) {
     validatePair(key, value);
-    Utils.checkNotNull(syntax, "syntax == null");
+    Preconditions.checkNotNull(syntax, "syntax == null");
     this.key = key;
     this.value = value;
     this.syntax = syntax;
   }
 
   private static void validatePair(String key, Object value) {
-    if (Utils.isEmpty(key) || Utils.isEmpty(String.valueOf(value))) {
-      throw new IllegalArgumentException("Key and value cannot be null or empty");
-    }
+    Preconditions.checkNotEmpty(key, "key is empty");
+    Preconditions.checkNotEmpty(String.valueOf(value), "value is empty");
   }
 
   public Piece bold() {

@@ -16,7 +16,7 @@
 package com.github.pwittchen.kirai.library.html;
 
 import com.github.pwittchen.kirai.library.Syntax;
-import com.github.pwittchen.kirai.library.Utils;
+import com.github.pwittchen.kirai.library.Preconditions;
 
 public final class HtmlSyntax implements Syntax {
   private final static String STRONG_FORMAT = "<strong>%s</strong>";
@@ -50,9 +50,7 @@ public final class HtmlSyntax implements Syntax {
 
   @Override
   public void validateColorCode(String code) {
-    if (Utils.isEmpty(code)) {
-      throw new IllegalArgumentException("Hex value of the color cannot be null or empty");
-    }
+    Preconditions.checkNotEmpty(code, "color code is empty");
 
     if (code.length() != 7) {
       throw new IllegalArgumentException(
