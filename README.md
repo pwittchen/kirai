@@ -111,7 +111,7 @@ dependencies {
 Tests
 -----
 
-Unit Tests are available in `library/src/test` directory. They don't have any dependencies to Android API and can be run from Android Studio, IntelliJ IDEA or CLI with Gradle directly on JVM without any emulator or attached device thanks to enabled [Unit Testing Support](http://tools.android.com/tech-docs/unit-testing-support). Tests were written according to TDD methodology. They determine library specification and check if project is fault-tolerant.
+Unit Tests are available in `library/src/test` directory. They can be run from IntelliJ IDEA or CLI with Gradle Wrapper. Tests were written according to TDD methodology. They determine library specification and check if project is fault-tolerant. Code Coverage is monitored by [codecov.io](https://codecov.io/github/pwittchen/kirai?branch=master) integrated with Travis CI.
 
 Code style
 ----------
