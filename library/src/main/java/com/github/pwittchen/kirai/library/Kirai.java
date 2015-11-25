@@ -72,11 +72,8 @@ public final class Kirai {
   private List<Piece> pieces = new ArrayList<>();
 
   private Kirai(String string) {
+    Preconditions.checkNotEmpty(string, "string is empty");
     input = string;
-
-    if (Utils.isEmpty(string)) {
-      throw new IllegalArgumentException("Input string cannot be null or empty");
-    }
 
     if (!isInputBalanced()) {
       throw new IllegalArgumentException("Braces in provided string are not balanced");
@@ -94,9 +91,8 @@ public final class Kirai {
   }
 
   public Kirai put(String key, Object value) {
-    if (Utils.isEmpty(key) || Utils.isEmpty(String.valueOf(value))) {
-      throw new IllegalArgumentException("Key and value cannot be null or empty");
-    }
+    Preconditions.checkNotEmpty(key, "key is empty");
+    Preconditions.checkNotEmpty(String.valueOf(value), "value is empty");
 
     if (!tags.contains(key)) {
       throw new IllegalArgumentException("Tag {" + key + "} was not defined in input string");
@@ -107,9 +103,7 @@ public final class Kirai {
   }
 
   public Kirai put(Piece piece) {
-    if (piece == null) {
-      throw new IllegalArgumentException("Piece object cannot be null");
-    }
+    Preconditions.checkNotNull(piece, "piece == null");
 
     if (!tags.contains(piece.getKey())) {
       throw new IllegalArgumentException(

@@ -307,42 +307,6 @@ public class KiraiTest {
   }
 
   @Test
-  public void testIsEmptyShouldReturnTrueForEmptyString() {
-    // given
-    String emptyString = "";
-
-    // when
-    boolean isEmpty = Utils.isEmpty(emptyString);
-
-    // then
-    assertThat(isEmpty).isTrue();
-  }
-
-  @Test
-  public void testIsEmptyShouldReturnTrueForNull() {
-    // given
-    String nullString = null;
-
-    // when
-    boolean isEmpty = Utils.isEmpty(nullString);
-
-    // then
-    assertThat(isEmpty).isTrue();
-  }
-
-  @Test
-  public void testIsEmptyShouldReturnFalseForNotEmptyString() {
-    // given
-    String notEmptyString = "string, which is not empty";
-
-    // when
-    boolean isEmpty = Utils.isEmpty(notEmptyString);
-
-    // then
-    assertThat(isEmpty).isFalse();
-  }
-
-  @Test
   public void testFormatterShouldFormatInput() {
     // given
     // formatter below is created for test purposes and it can do anything

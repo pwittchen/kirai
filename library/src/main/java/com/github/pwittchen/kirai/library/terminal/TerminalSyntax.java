@@ -16,6 +16,7 @@
 package com.github.pwittchen.kirai.library.terminal;
 
 import com.github.pwittchen.kirai.library.Syntax;
+import com.github.pwittchen.kirai.library.Preconditions;
 
 public class TerminalSyntax implements Syntax {
   private final static String STRONG_FORMAT = "\033[1m%s\033[21m";
@@ -49,6 +50,7 @@ public class TerminalSyntax implements Syntax {
    */
   @Override
   public void validateColorCode(String code) {
+    Preconditions.checkNotEmpty(code, "color code is empty");
     Integer numericColorCode = Integer.valueOf(code);
     boolean isColorCodeValid = numericColorCode > 0 && numericColorCode < 257;
     if (!isColorCodeValid) {

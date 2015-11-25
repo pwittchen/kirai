@@ -22,36 +22,36 @@ import org.junit.runners.JUnit4;
 import static com.google.common.truth.Truth.assertThat;
 
 @RunWith(JUnit4.class)
-public class UtilsTest {
+public class PreconditionsTest {
 
   @Test
-  public void testShouldInitializeUtils() {
-    Utils utils = new Utils();
-    assertThat(utils).isNotNull();
+  public void testShouldInitializePreconditions() {
+    Preconditions preconditions = new Preconditions();
+    assertThat(preconditions).isNotNull();
   }
 
-  @Test
+  @Test(expected = IllegalArgumentException.class)
   public void testStringShouldBeEmpty() {
     // given
     String emptyString = "";
 
     // when
-    boolean isEmpty = Utils.isEmpty(emptyString);
+    Preconditions.checkNotEmpty(emptyString, "string is empty");
 
     // then
-    assertThat(isEmpty).isTrue();
+    // an exception is thrown
   }
 
-  @Test
+  @Test(expected = IllegalArgumentException.class)
   public void testNullStringShouldBeEmpty() {
     // given
     String emptyString = null;
 
     // when
-    boolean isEmpty = Utils.isEmpty(emptyString);
+    Preconditions.checkNotEmpty(emptyString, "string is empty");
 
     // then
-    assertThat(isEmpty).isTrue();
+    // an exception is thrown
   }
 
   @Test
@@ -60,10 +60,10 @@ public class UtilsTest {
     String notEmptyString = "not empty string";
 
     // when
-    boolean isEmpty = Utils.isEmpty(notEmptyString);
+    Preconditions.checkNotEmpty(notEmptyString, "string is empty");
 
     // then
-    assertThat(isEmpty).isFalse();
+    // no exception is thrown
   }
 
   @Test
@@ -72,7 +72,7 @@ public class UtilsTest {
     Object object = new Object();
 
     // when
-    Utils.checkNotNull(object, "object == null");
+    Preconditions.checkNotNull(object, "object == null");
 
     // then
     assertThat(object).isNotNull(); // and no exception is thrown
@@ -84,7 +84,7 @@ public class UtilsTest {
     Object nullObject = null;
 
     // when
-    Utils.checkNotNull(nullObject, "nullObject == null");
+    Preconditions.checkNotNull(nullObject, "nullObject == null");
 
     // then throw an exception
   }
