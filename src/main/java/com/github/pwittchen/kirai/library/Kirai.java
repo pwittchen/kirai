@@ -135,9 +135,11 @@ public final class Kirai {
       return input;
     }
 
+    String target;
+
     for (Piece piece : pieces) {
-      input =
-          input.replace(BRACE_START + piece.getKey() + BRACE_END, String.valueOf(piece.getValue()));
+      target = BRACE_START + piece.getKey() + BRACE_END;
+      input = input.replace(target, String.valueOf(piece.getValue()));
     }
 
     return input;
