@@ -166,6 +166,7 @@ public final class Kirai {
     return stack.empty();
   }
 
+  @SuppressWarnings("PMD")
   private boolean areTagsValid() {
     tags = getTags(input);
     for (String tag : tags) {
