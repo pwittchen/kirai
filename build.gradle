@@ -42,7 +42,7 @@ jacocoTestReport {
 }
 
 checkstyle {
-    configFile = new File(rootDir, "quality/checkstyle/checkstyle.xml")
+    configFile = new File(rootDir, 'checkstyle.xml')
 }
 
 tasks.withType(FindBugs) {
