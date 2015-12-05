@@ -98,7 +98,7 @@ You can depend on the library through Maven:
 <dependency>
     <groupId>com.github.pwittchen.kirai</groupId>
     <artifactId>library</artifactId>
-    <version>1.4.0</version>
+    <version>1.4.1</version>
 </dependency>
 ```
 
@@ -106,7 +106,7 @@ or through Gradle:
 
 ```groovy
 dependencies {
-  compile 'com.github.pwittchen.kirai:library:1.4.0'
+  compile 'com.github.pwittchen.kirai:library:1.4.1'
 }
 ```
 
