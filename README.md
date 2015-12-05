@@ -112,7 +112,7 @@ dependencies {
 Building project
 ----------------
 
-To build project run the following command:
+To build project, run the following command:
 
 ```
 ./gradlew build
