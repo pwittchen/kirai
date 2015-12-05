@@ -1,6 +1,21 @@
 CHANGELOG
 =========
 
+v. 1.4.1
+--------
+*05 Dec 2015*
+
+- renamed `Utils` class to `Preconditions` class
+- improved validation of input data
+- increased code coverage
+- updated project configuration
+- removed `app` module
+- removed remaining Android dependencies located in classpath of Gradle configuration
+- removed Android related stuff from `.travis.yml`
+- added Java related stuff to `.travis.yml`
+- removed top-level `build.gradle` script and `library` directory to simplify project configuration
+- added Static Code Analysis (CheckStyle, PMD, FindBugs)
+
 v. 1.4.0
 --------
 *22 Nov 2015*
