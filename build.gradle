@@ -1,20 +1,45 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'jacoco'
 
-buildscript {
-  repositories {
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+    mavenCentral()
     jcenter()
-  }
-  dependencies {
-    // NOTE: Do not place your application dependencies here; they belong
-    // in the individual module build.gradle files
-  }
 }
 
-allprojects {
-  version = VERSION_NAME
-  group = GROUP
-
-  repositories {
-    jcenter()
-  }
+dependencies {
+    testCompile 'junit:junit:4.12'
+    testCompile 'com.google.truth:truth:0.25'
 }
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'src/main/java'
+        }
+    }
+
+    test {
+        java {
+            srcDir 'src/test/java'
+        }
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+check.dependsOn jacocoTestReport
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2.1'
+}
+
+apply from: 'maven_push.gradle'
