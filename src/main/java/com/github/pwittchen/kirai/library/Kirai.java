@@ -67,7 +67,7 @@ public final class Kirai {
   private final static String REGEX_VALID_TAG = "[a-z]{1}[a-z0-9_]*";
   private final static Pattern REGEX_TAG =
       Pattern.compile("\\" + BRACE_START + "(.+?)\\" + BRACE_END);
-  private static String input;
+  private String input;
   private List<String> tags;
   private List<Piece> pieces = new ArrayList<>();
 

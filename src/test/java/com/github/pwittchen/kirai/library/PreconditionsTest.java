@@ -74,15 +74,4 @@ public class PreconditionsTest {
     // then
     assertThat(object).isNotNull(); // and no exception is thrown
   }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testShouldThrowAnExceptionWhenObjectIsNull() {
-    // given
-    Object nullObject = null;
-
-    // when
-    Preconditions.checkNotNull(nullObject, "nullObject == null");
-
-    // then throw an exception
-  }
 }

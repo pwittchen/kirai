@@ -2,6 +2,7 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'jacoco'
 apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
 apply plugin: 'pmd'
 
 apply from: 'maven_push.gradle'
@@ -42,6 +43,13 @@ jacocoTestReport {
 
 checkstyle {
     configFile = new File(rootDir, "quality/checkstyle/checkstyle.xml")
+}
+
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
 }
 
 task wrapper(type: Wrapper) {
