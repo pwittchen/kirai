@@ -15,10 +15,11 @@
  */
 package com.github.pwittchen.kirai.library.terminal;
 
-import com.github.pwittchen.kirai.library.Syntax;
 import com.github.pwittchen.kirai.library.Preconditions;
+import com.github.pwittchen.kirai.library.Syntax;
 
 public class TerminalSyntax implements Syntax {
+  private final static String ERROR_MSG_FORMAT = "%s format is currently not supported in Terminal";
   private final static String STRONG_FORMAT = "\033[1m%s\033[21m";
   private final static String UNDERLINE_FORMAT = "\033[39;4m%s\033[0m";
   private final static String COLOR_FORMAT = "\033[%sm%s\033[0m";
@@ -30,8 +31,7 @@ public class TerminalSyntax implements Syntax {
 
   @Override
   public String getItalicFormat() {
-    throw new UnsupportedOperationException("italic format is currently not supported "
-        + "in TerminalSyntax");
+    throw new UnsupportedOperationException(String.format(ERROR_MSG_FORMAT, "italic"));
   }
 
   @Override
@@ -62,25 +62,21 @@ public class TerminalSyntax implements Syntax {
 
   @Override
   public String getBigFormat() {
-    throw new UnsupportedOperationException("big format is currently not supported "
-        + "in TerminalSyntax");
+    throw new UnsupportedOperationException(String.format(ERROR_MSG_FORMAT, "big"));
   }
 
   @Override
   public String getSmallFormat() {
-    throw new UnsupportedOperationException("small format is currently not supported "
-        + "in TerminalSyntax");
+    throw new UnsupportedOperationException(String.format(ERROR_MSG_FORMAT, "small"));
   }
 
   @Override
   public String getSubFormat() {
-    throw new UnsupportedOperationException("sub format is currently not supported "
-        + "in TerminalSyntax");
+    throw new UnsupportedOperationException(String.format(ERROR_MSG_FORMAT, "sub"));
   }
 
   @Override
   public String getSupFormat() {
-    throw new UnsupportedOperationException("sup format is currently not supported "
-        + "in TerminalSyntax");
+    throw new UnsupportedOperationException(String.format(ERROR_MSG_FORMAT, "sup"));
   }
 }
