@@ -10,7 +10,7 @@ Kirai has fluent API similar to phrase with additional formatting similar to Tag
 
 JavaDoc is available at: http://pwittchen.github.io/kirai/
 
-Library is compatible with Java 1.6 and higher.
+Library is compatible with Java 1.7 and higher. It should work with Java 1.6 and is compatible with Android applications.
 
 Contents
 --------
