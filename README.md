@@ -22,6 +22,7 @@ Contents
 - [Download](#download)
 - [Building project](#building-project)
 - [Tests](#tests)
+- [Static Code Analysis](#static-code-analysis)
 - [Code style](#code-style)
 - [License](#license)
 
@@ -136,6 +137,17 @@ To generate code coverage report, run the following command:
 ```
 
 All reports are generated in `build/reports/` directory.
+
+Static Code Analysis
+--------------------
+
+Project has Static Code Analysis configured in `build.gradle` file. It consists of CheckStyle, PMD and FindBugs.
+
+Static Code Analysis can be executed with the following command:
+
+```
+./gradlew check
+```
 
 Code style
 ----------
