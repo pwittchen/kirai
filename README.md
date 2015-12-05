@@ -20,6 +20,7 @@ Contents
   - [Web](#web)
   - [Terminal](#terminal)
 - [Download](#download)
+- [Building project](#building-project)
 - [Tests](#tests)
 - [Code style](#code-style)
 - [License](#license)
@@ -108,10 +109,33 @@ dependencies {
 }
 ```
 
+Building project
+----------------
+
+To build project run the following command:
+
+```
+./gradlew build
+```
+
 Tests
 -----
 
 Unit Tests are available in `library/src/test` directory. They can be run from IntelliJ IDEA or CLI with Gradle Wrapper. Tests were written according to TDD methodology. They determine library specification and check if project is fault-tolerant. Code Coverage is monitored by [codecov.io](https://codecov.io/github/pwittchen/kirai?branch=master) integrated with Travis CI.
+
+To execute tests, run the following command:
+
+```
+./gradlew test
+```
+
+To generate code coverage report, run the following command:
+
+```
+./gradlew jacocoTestReport
+```
+
+All reports are generated in `build/reports/` directory.
 
 Code style
 ----------
