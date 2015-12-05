@@ -162,7 +162,8 @@ public class HtmlPieceTest {
   public void testColorHtml() throws Exception {
     // given
     String testColorHexValue = "#FF0000";
-    String expectedFormattedValue = String.format(htmlSyntax.getColorFormat(), testColorHexValue, testValue);
+    String colorFormat = htmlSyntax.getColorFormat();
+    String expectedFormattedValue = String.format(colorFormat, testColorHexValue, testValue);
 
     // when
     Piece piece = HtmlPiece.put(testKey, testValue).color(testColorHexValue);
@@ -209,7 +210,7 @@ public class HtmlPieceTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testColorShouldThrowExceptionWhenHexDoesNotContainSevenCharactersForHtml() throws Exception {
+  public void testColorShouldThrowExceptionWhenHexDoesNotContainSevenCharacters() throws Exception {
     // given
     String incorrectTestColorHexValue = "#FFFFFFF";
 

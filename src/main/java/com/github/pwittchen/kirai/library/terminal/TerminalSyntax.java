@@ -30,7 +30,8 @@ public class TerminalSyntax implements Syntax {
 
   @Override
   public String getItalicFormat() {
-    throw new UnsupportedOperationException("italic format is currently not supported in TerminalSyntax");
+    throw new UnsupportedOperationException("italic format is currently not supported "
+        + "in TerminalSyntax");
   }
 
   @Override
@@ -44,7 +45,8 @@ public class TerminalSyntax implements Syntax {
   }
 
   /**
-   * Validates terminal color code For reference check: http://misc.flogisoft.com/bash/tip_colors_and_formatting
+   * Validates terminal color code For reference check website:
+   * http://misc.flogisoft.com/bash/tip_colors_and_formatting
    *
    * @param code numeric value as a String
    */
@@ -60,21 +62,25 @@ public class TerminalSyntax implements Syntax {
 
   @Override
   public String getBigFormat() {
-    throw new UnsupportedOperationException("big format is currently not supported in TerminalSyntax");
+    throw new UnsupportedOperationException("big format is currently not supported "
+        + "in TerminalSyntax");
   }
 
   @Override
   public String getSmallFormat() {
-    throw new UnsupportedOperationException("small format is currently not supported in TerminalSyntax");
+    throw new UnsupportedOperationException("small format is currently not supported "
+        + "in TerminalSyntax");
   }
 
   @Override
   public String getSubFormat() {
-    throw new UnsupportedOperationException("sub format is currently not supported in TerminalSyntax");
+    throw new UnsupportedOperationException("sub format is currently not supported "
+        + "in TerminalSyntax");
   }
 
   @Override
   public String getSupFormat() {
-    throw new UnsupportedOperationException("sup format is currently not supported in TerminalSyntax");
+    throw new UnsupportedOperationException("sup format is currently not supported "
+        + "in TerminalSyntax");
   }
 }

@@ -1,6 +1,8 @@
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'jacoco'
+apply plugin: 'checkstyle'
+apply from: 'maven_push.gradle'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
@@ -36,10 +38,14 @@ jacocoTestReport {
     }
 }
 
-check.dependsOn jacocoTestReport
+checkstyle {
+    configFile = new File(rootDir, "quality/checkstyle/checkstyle.xml")
+}
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.2.1'
 }
 
-apply from: 'maven_push.gradle'
+check.dependsOn jacocoTestReport
+
+
