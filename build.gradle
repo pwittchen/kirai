@@ -11,49 +11,50 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 repositories {
-    mavenCentral()
-    jcenter()
+  mavenCentral()
+  jcenter()
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
-    testCompile 'com.google.truth:truth:0.27'
+  testCompile 'junit:junit:4.12'
+  testCompile 'com.google.truth:truth:0.27'
 }
 
 sourceSets {
-    main {
-        java {
-            srcDirs 'src/main/java'
-        }
+  main {
+    java {
+      srcDirs 'src/main/java'
     }
+  }
 
-    test {
-        java {
-            srcDir 'src/test/java'
-        }
+  test {
+    java {
+      srcDir 'src/test/java'
     }
+  }
 }
 
 jacocoTestReport {
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
+  reports {
+    xml.enabled = true
+    html.enabled = true
+  }
 }
 
 checkstyle {
-    configFile = new File(rootDir, 'checkstyle.xml')
+  toolVersion = '6.0'
+  configFile = new File(rootDir, 'checkstyle.xml')
 }
 
 tasks.withType(FindBugs) {
-    reports {
-        xml.enabled = false
-        html.enabled = true
-    }
+  reports {
+    xml.enabled = false
+    html.enabled = true
+  }
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.2.1'
+  gradleVersion = '4.1'
 }
 
 check.dependsOn jacocoTestReport
