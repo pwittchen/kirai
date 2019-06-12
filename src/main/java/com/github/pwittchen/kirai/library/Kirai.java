@@ -67,9 +67,9 @@ public final class Kirai {
   private final static String REGEX_VALID_TAG = "[a-z]{1}[a-z0-9_]*";
   private final static Pattern REGEX_TAG =
       Pattern.compile("\\" + BRACE_START + "(.+?)\\" + BRACE_END);
-  private String input;
-  private List<String> tags;
-  private List<Piece> pieces = new ArrayList<>();
+  private String input; //NOPMD
+  private List<String> tags; //NOPMD
+  private List<Piece> pieces = new ArrayList<>(); //NOPMD
 
   private Kirai(String string) {
     Preconditions.checkNotEmpty(string, "string is empty");
@@ -130,7 +130,7 @@ public final class Kirai {
    *
    * @return formatted CharSequence
    */
-  public CharSequence format() {
+  public CharSequence format() { //NOPMD
     if (pieces.isEmpty()) {
       return input;
     }

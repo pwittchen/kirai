@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import static com.google.common.truth.Truth.assertThat;
 
+@SuppressWarnings("PMD")
 public class TerminalSyntaxTest {
 
   private Syntax syntax = new TerminalSyntax();

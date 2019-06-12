@@ -20,6 +20,7 @@ import org.junit.Test;
 
 import static com.google.common.truth.Truth.assertThat;
 
+@SuppressWarnings("PMD")
 public class KiraiTest {
 
   @Test

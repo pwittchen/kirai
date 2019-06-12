@@ -16,9 +16,9 @@
 package com.github.pwittchen.kirai.library;
 
 public abstract class Piece {
-  protected final Syntax syntax;
-  protected final String key;
-  protected Object value;
+  protected final Syntax syntax; //NOPMD
+  protected final String key; //NOPMD
+  protected Object value; //NOPMD
 
   public Piece(String key, Object value, Syntax syntax) {
     validatePair(key, value);

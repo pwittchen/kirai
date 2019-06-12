@@ -19,6 +19,9 @@ import com.github.pwittchen.kirai.library.Syntax;
 import com.github.pwittchen.kirai.library.Preconditions;
 
 public final class HtmlSyntax implements Syntax {
+  private static final int COLOR_CODE_LENGTH = 7;
+  private static final char COLOR_PREFIX = '#';
+
   private final static String STRONG_FORMAT = "<strong>%s</strong>";
   private final static String ITALIC_FORMAT = "<em>%s</em>";
   private final static String UNDERLINE_FORMAT = "<u>%s</u>";
@@ -52,13 +55,18 @@ public final class HtmlSyntax implements Syntax {
   public void validateColorCode(String code) {
     Preconditions.checkNotEmpty(code, "color code is empty");
 
-    if (code.length() != 7) {
+    if (code.length() != COLOR_CODE_LENGTH) {
       throw new IllegalArgumentException(
-          "Hex value have to contain 7 characters including hash sign (#)");
+          "Hex value have to contain "
+              + COLOR_CODE_LENGTH
+              + " characters including hash sign ("
+              + COLOR_PREFIX
+              + ")");
     }
 
-    if (code.charAt(0) != '#') {
-      throw new IllegalArgumentException("Hex value have to start from hash sign (#)");
+    if (code.charAt(0) != COLOR_PREFIX) {
+      throw new IllegalArgumentException(
+          "Hex value have to start from hash sign (" + COLOR_PREFIX + ")");
     }
   }
 
