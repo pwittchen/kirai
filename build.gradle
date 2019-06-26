@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
   testCompile 'junit:junit:4.12'
-  testCompile 'com.google.truth:truth:0.45'
+  testCompile 'com.google.truth:truth:0.46'
 }
 
 sourceSets {
